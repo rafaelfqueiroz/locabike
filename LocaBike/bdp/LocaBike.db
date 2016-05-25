@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<db_xml>
+    <atelierb version="3_7_ubuntu-cvs" />
+    <project decomp_dir="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike/bdp/expand_src" old_decomp_dir="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike/bdp/src">
+        <!-- Definition directory list -->
+        <!-- Component file list -->
+        <component_file path="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike" name="BikeCTX" suffix="mch" user="rafaelfdequeiroz">
+            <component name="BikeCTX" type="specification" />
+        </component_file>
+        <component_file path="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike" name="Boolean" suffix="mch" user="rafaelfdequeiroz">
+            <component name="Boolean" type="specification" />
+        </component_file>
+        <component_file path="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike" name="ClientCTX" suffix="mch" user="rafaelfdequeiroz">
+            <component name="ClientCTX" type="specification" />
+        </component_file>
+        <component_file path="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike" name="ClientManager" suffix="mch" user="rafaelfdequeiroz">
+            <component name="ClientManager" type="specification" />
+        </component_file>
+        <component_file path="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike" name="Price" suffix="mch" user="rafaelfdequeiroz">
+            <component name="Price" type="specification" />
+        </component_file>
+        <component_file path="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike" name="Type" suffix="mch" user="rafaelfdequeiroz">
+            <component name="Type" type="specification" />
+        </component_file>
+        <component_file path="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike" name="TypeCTX" suffix="mch" user="rafaelfdequeiroz">
+            <component name="TypeCTX" type="specification" />
+        </component_file>
+    </project>
+</db_xml>

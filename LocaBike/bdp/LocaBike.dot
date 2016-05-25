@@ -1,0 +1,16 @@
+digraph {
+BikeCTX [ label=" BikeCTX " shape= box ]
+Boolean [ label=" Boolean " shape= box ]
+ClientCTX [ label=" ClientCTX " shape= box ]
+ClientManager [ label=" ClientManager " shape= box ]
+Price [ label=" Price " shape= box ]
+Type [ label=" Type " shape= box ]
+TypeCTX [ label=" TypeCTX " shape= box ]
+
+"ClientManager" -> "ClientCTX" [style= dotted ]
+"ClientManager" -> "Boolean" [style= dotted ]
+"Type" -> "Boolean" [style= dotted ]
+"Type" -> "BikeCTX" [style= dotted ]
+"Type" -> "TypeCTX" [style= dotted ]
+"Type" -> "Price" [style= dotted ]
+}
