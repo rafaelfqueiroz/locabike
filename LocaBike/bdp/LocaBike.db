@@ -4,6 +4,9 @@
     <project decomp_dir="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike/bdp/expand_src" old_decomp_dir="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike/bdp/src">
         <!-- Definition directory list -->
         <!-- Component file list -->
+        <component_file path="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike" name="Bike" suffix="mch" user="rafaelfdequeiroz">
+            <component name="Bike" type="specification" />
+        </component_file>
         <component_file path="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike" name="BikeCTX" suffix="mch" user="rafaelfdequeiroz">
             <component name="BikeCTX" type="specification" />
         </component_file>
@@ -16,8 +19,23 @@
         <component_file path="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike" name="ClientManager" suffix="mch" user="rafaelfdequeiroz">
             <component name="ClientManager" type="specification" />
         </component_file>
+        <component_file path="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike" name="Damage" suffix="mch" user="rafaelfdequeiroz">
+            <component name="Damage" type="specification" />
+        </component_file>
+        <component_file path="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike" name="DamageCTX" suffix="mch" user="rafaelfdequeiroz">
+            <component name="DamageCTX" type="specification" />
+        </component_file>
+        <component_file path="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike" name="Penalty" suffix="mch" user="rafaelfdequeiroz">
+            <component name="Penalty" type="specification" />
+        </component_file>
         <component_file path="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike" name="Price" suffix="mch" user="rafaelfdequeiroz">
             <component name="Price" type="specification" />
+        </component_file>
+        <component_file path="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike" name="Rent" suffix="mch" user="rafaelfdequeiroz">
+            <component name="Rent" type="specification" />
+        </component_file>
+        <component_file path="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike" name="Time" suffix="mch" user="rafaelfdequeiroz">
+            <component name="Time" type="specification" />
         </component_file>
         <component_file path="/Users/rafaelfdequeiroz/Projetos/metodos/locabike/LocaBike" name="Type" suffix="mch" user="rafaelfdequeiroz">
             <component name="Type" type="specification" />

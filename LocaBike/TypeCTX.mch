@@ -1,8 +1,8 @@
 /* TypeCTX
- * Author: 
+ * Author: Rafael Queiroz
  * Creation date: 25/05/16
  */
 MACHINE
     TypeCTX
-    SETS Types_SET = {COMPACT, DIRT, EUROPEAN, ROAD}
+    SETS TYPES_SET = {COMPACT, DIRT, EUROPEAN, ROAD}
 END
