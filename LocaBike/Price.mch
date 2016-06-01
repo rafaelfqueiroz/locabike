@@ -20,6 +20,7 @@ set_damage_price ( dd , pp ) =
   THEN damage_price ( dd ) := pp
   END ;
 
+
 qq <-- query_damage_penalty ( vv ) =
   PRE vv : BIKES_SET
   THEN qq := damage_price ( damages ( vv ) )

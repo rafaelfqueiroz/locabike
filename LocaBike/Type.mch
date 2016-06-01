@@ -4,7 +4,6 @@
  */
 MACHINE
     Type
-    
     SEES Boolean, BikeCTX, TypeCTX, Price
     ABSTRACT_VARIABLES types
     INVARIANT types : BIKES_SET +-> TYPES_SET
