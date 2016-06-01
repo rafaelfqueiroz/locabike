@@ -1,0 +1,176 @@
+<Machine name='Type' type='abstraction'>
+<Sees>
+<Referenced_Machine>
+<Name>Boolean</Name>
+</Referenced_Machine>
+<Referenced_Machine>
+<Name>BikeCTX</Name>
+</Referenced_Machine>
+<Referenced_Machine>
+<Name>TypeCTX</Name>
+</Referenced_Machine>
+<Referenced_Machine>
+<Name>Price</Name>
+</Referenced_Machine>
+</Sees>
+<Abstract_Variables>
+<Id value='types' typref='3187665349'/>
+</Abstract_Variables>
+<Invariant>
+<Exp_Comparison op=':'>
+<Id value='types' typref='3187665349'/>
+<Binary_Exp op='+-&gt;' typref='3832165502'>
+<Id value='BIKES_SET' typref='2466226896'/>
+<Id value='TYPES_SET' typref='4236453719'/>
+</Binary_Exp>
+</Exp_Comparison>
+</Invariant>
+<Initialisation>
+<Assignement_Sub>
+<Variables>
+<Id value='types' typref='3187665349'/>
+</Variables>
+<Values>
+<EmptySet typref='3817003670'/>
+</Values>
+</Assignement_Sub>
+</Initialisation>
+<Operations>
+<Operation name='set_category'>
+<Input_Parameters>
+<Id value='bb' typref='928822259'/>
+<Id value='tt' typref='59484332'/>
+</Input_Parameters>
+<Precondition>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op=':'>
+<Id value='bb' typref='928822259'/>
+<Id value='BIKES_SET' typref='2466226896'/>
+</Exp_Comparison>
+<Exp_Comparison op=':'>
+<Id value='tt' typref='59484332'/>
+<Id value='TYPES_SET' typref='4236453719'/>
+</Exp_Comparison>
+<Exp_Comparison op=':'>
+<Id value='tt' typref='59484332'/>
+<Unary_Exp op='dom' typref='4236453719'>
+<Id value='price' typref='2418527566'/>
+</Unary_Exp>
+</Exp_Comparison>
+</Nary_Pred>
+</Precondition>
+<Body>
+<Assignement_Sub>
+<Variables>
+<Binary_Exp op='(' typref='59484332'>
+<Id value='types' typref='3187665349'/>
+<Id value='bb' typref='928822259'/>
+</Binary_Exp>
+</Variables>
+<Values>
+<Id value='tt' typref='59484332'/>
+</Values>
+</Assignement_Sub>
+</Body>
+</Operation>
+<Operation name='query_type'>
+<Output_Parameters>
+<Id value='qq' typref='59484332'/>
+</Output_Parameters>
+<Input_Parameters>
+<Id value='bb' typref='928822259'/>
+</Input_Parameters>
+<Precondition>
+<Exp_Comparison op=':'>
+<Id value='bb' typref='928822259'/>
+<Id value='BIKES_SET' typref='2466226896'/>
+</Exp_Comparison>
+</Precondition>
+<Body>
+<If_Sub elseif='no'>
+<Condition>
+<Exp_Comparison op=':'>
+<Id value='bb' typref='928822259'/>
+<Unary_Exp op='dom' typref='2466226896'>
+<Id value='types' typref='3187665349'/>
+</Unary_Exp>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Variables>
+<Id value='qq' typref='59484332'/>
+</Variables>
+<Values>
+<Binary_Exp op='(' typref='59484332'>
+<Id value='types' typref='3187665349'/>
+<Id value='bb' typref='928822259'/>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<Becomes_In>
+<Variables>
+<Id value='qq' typref='59484332'/>
+</Variables>
+<Value>
+<Id value='TYPES_SET' typref='4236453719'/>
+</Value>
+</Becomes_In>
+</Else>
+</If_Sub>
+</Body>
+</Operation>
+</Operations>
+<TypeInfos>
+<Type id='3187665349'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='BIKES_SET'/>
+<Id value='TYPES_SET'/>
+</Binary_Exp>
+</Unary_Exp>
+</Type>
+<Type id='3832165502'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='BIKES_SET'/>
+<Id value='TYPES_SET'/>
+</Binary_Exp>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+<Type id='2466226896'>
+<Unary_Exp op='POW'>
+<Id value='BIKES_SET'/>
+</Unary_Exp>
+</Type>
+<Type id='4236453719'>
+<Unary_Exp op='POW'>
+<Id value='TYPES_SET'/>
+</Unary_Exp>
+</Type>
+<Type id='3817003670'>
+<Unary_Exp op='POW'>
+<Generic_Type/>
+</Unary_Exp>
+</Type>
+<Type id='928822259'>
+<Id value='BIKES_SET'/>
+</Type>
+<Type id='59484332'>
+<Id value='TYPES_SET'/>
+</Type>
+<Type id='2418527566'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='TYPES_SET'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+
+</Machine>

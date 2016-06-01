@@ -1,0 +1,18 @@
+<Machine name='BikeCTX' type='abstraction'>
+<Sets>
+<Set>
+<Id value='BIKES_SET' typref='2466226896'/>
+</Set>
+</Sets>
+<Initialisation>
+<Skip/>
+</Initialisation>
+<TypeInfos>
+<Type id='2466226896'>
+<Unary_Exp op='POW'>
+<Id value='BIKES_SET'/>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+
+</Machine>

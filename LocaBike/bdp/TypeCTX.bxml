@@ -1,0 +1,27 @@
+<Machine name='TypeCTX' type='abstraction'>
+<Sets>
+<Set>
+<Id value='TYPES_SET' typref='4236453719'/>
+<Enumerated_Values>
+<Id value='COMPACT' typref='59484332'/>
+<Id value='DIRT' typref='59484332'/>
+<Id value='EUROPEAN' typref='59484332'/>
+<Id value='ROAD' typref='59484332'/>
+</Enumerated_Values>
+</Set>
+</Sets>
+<Initialisation>
+<Skip/>
+</Initialisation>
+<TypeInfos>
+<Type id='4236453719'>
+<Unary_Exp op='POW'>
+<Id value='TYPES_SET'/>
+</Unary_Exp>
+</Type>
+<Type id='59484332'>
+<Id value='TYPES_SET'/>
+</Type>
+</TypeInfos>
+
+</Machine>

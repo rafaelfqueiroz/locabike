@@ -1,0 +1,212 @@
+<Machine name='Central' type='abstraction'>
+<Sees>
+<Referenced_Machine>
+<Name>Boolean</Name>
+</Referenced_Machine>
+<Referenced_Machine>
+<Name>TerminalCTX</Name>
+</Referenced_Machine>
+</Sees>
+<Abstract_Variables>
+<Id value='terminals' typref='196223061'/>
+</Abstract_Variables>
+<Invariant>
+<Exp_Comparison op='&lt;:'>
+<Id value='terminals' typref='196223061'/>
+<Id value='TERMINALS_SET' typref='196223061'/>
+</Exp_Comparison>
+</Invariant>
+<Initialisation>
+<Assignement_Sub>
+<Variables>
+<Id value='terminals' typref='196223061'/>
+</Variables>
+<Values>
+<EmptySet typref='3817003670'/>
+</Values>
+</Assignement_Sub>
+</Initialisation>
+<Operations>
+<Operation name='add_terminal'>
+<Output_Parameters>
+<Id value='rr' typref='1806513362'/>
+</Output_Parameters>
+<Input_Parameters>
+<Id value='bb' typref='3580035374'/>
+</Input_Parameters>
+<Precondition>
+<Exp_Comparison op=':'>
+<Id value='bb' typref='3580035374'/>
+<Id value='TERMINALS_SET' typref='196223061'/>
+</Exp_Comparison>
+</Precondition>
+<Body>
+<If_Sub elseif='no'>
+<Condition>
+<Exp_Comparison op='/:'>
+<Id value='bb' typref='3580035374'/>
+<Id value='terminals' typref='196223061'/>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Nary_Sub op='||'>
+<Assignement_Sub>
+<Variables>
+<Id value='terminals' typref='196223061'/>
+</Variables>
+<Values>
+<Binary_Exp op='\/' typref='196223061'>
+<Id value='terminals' typref='196223061'/>
+<Nary_Exp op='{' typref='196223061'>
+<Id value='bb' typref='3580035374'/>
+</Nary_Exp>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Variables>
+<Id value='rr' typref='1806513362'/>
+</Variables>
+<Values>
+<Id value='true' typref='1806513362'/>
+</Values>
+</Assignement_Sub>
+</Nary_Sub>
+</Then>
+<Else>
+<Assignement_Sub>
+<Variables>
+<Id value='rr' typref='1806513362'/>
+</Variables>
+<Values>
+<Id value='false' typref='1806513362'/>
+</Values>
+</Assignement_Sub>
+</Else>
+</If_Sub>
+</Body>
+</Operation>
+<Operation name='remove_terminal'>
+<Output_Parameters>
+<Id value='rr' typref='1806513362'/>
+</Output_Parameters>
+<Input_Parameters>
+<Id value='bb' typref='3580035374'/>
+</Input_Parameters>
+<Precondition>
+<Exp_Comparison op=':'>
+<Id value='bb' typref='3580035374'/>
+<Id value='TERMINALS_SET' typref='196223061'/>
+</Exp_Comparison>
+</Precondition>
+<Body>
+<If_Sub elseif='no'>
+<Condition>
+<Exp_Comparison op=':'>
+<Id value='bb' typref='3580035374'/>
+<Id value='terminals' typref='196223061'/>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Nary_Sub op='||'>
+<Assignement_Sub>
+<Variables>
+<Id value='terminals' typref='196223061'/>
+</Variables>
+<Values>
+<Binary_Exp op='-' typref='196223061'>
+<Id value='terminals' typref='196223061'/>
+<Nary_Exp op='{' typref='196223061'>
+<Id value='bb' typref='3580035374'/>
+</Nary_Exp>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Variables>
+<Id value='rr' typref='1806513362'/>
+</Variables>
+<Values>
+<Id value='true' typref='1806513362'/>
+</Values>
+</Assignement_Sub>
+</Nary_Sub>
+</Then>
+<Else>
+<Assignement_Sub>
+<Variables>
+<Id value='rr' typref='1806513362'/>
+</Variables>
+<Values>
+<Id value='false' typref='1806513362'/>
+</Values>
+</Assignement_Sub>
+</Else>
+</If_Sub>
+</Body>
+</Operation>
+<Operation name='query_terminal'>
+<Output_Parameters>
+<Id value='qq' typref='1806513362'/>
+</Output_Parameters>
+<Input_Parameters>
+<Id value='bb' typref='3580035374'/>
+</Input_Parameters>
+<Precondition>
+<Exp_Comparison op=':'>
+<Id value='bb' typref='3580035374'/>
+<Id value='TERMINALS_SET' typref='196223061'/>
+</Exp_Comparison>
+</Precondition>
+<Body>
+<If_Sub elseif='no'>
+<Condition>
+<Exp_Comparison op=':'>
+<Id value='bb' typref='3580035374'/>
+<Id value='terminals' typref='196223061'/>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Variables>
+<Id value='qq' typref='1806513362'/>
+</Variables>
+<Values>
+<Id value='true' typref='1806513362'/>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<Assignement_Sub>
+<Variables>
+<Id value='qq' typref='1806513362'/>
+</Variables>
+<Values>
+<Id value='false' typref='1806513362'/>
+</Values>
+</Assignement_Sub>
+</Else>
+</If_Sub>
+</Body>
+</Operation>
+</Operations>
+<TypeInfos>
+<Type id='196223061'>
+<Unary_Exp op='POW'>
+<Id value='TERMINALS_SET'/>
+</Unary_Exp>
+</Type>
+<Type id='3817003670'>
+<Unary_Exp op='POW'>
+<Generic_Type/>
+</Unary_Exp>
+</Type>
+<Type id='1806513362'>
+<Id value='BOOL_RESPONSE'/>
+</Type>
+<Type id='3580035374'>
+<Id value='TERMINALS_SET'/>
+</Type>
+</TypeInfos>
+
+</Machine>
