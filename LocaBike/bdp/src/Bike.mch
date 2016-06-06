@@ -1,45 +1,45 @@
-﻿/* Bike
- * Author: Rafael Queiroz
- * Creation date: 30/05/16
- */
-MACHINE
+﻿MACHINE
     Bike
 
-    SEES              Boolean , BikeCTX , Type
+SEES
+    Boolean , Context , Type
 
-ABSTRACT_VARIABLES bikes
+ABSTRACT_VARIABLES
+    bikes
 
-INVARIANT         bikes <: BIKES_SET
+INVARIANT
+    bikes <: BIKE
 
-INITIALISATION    bikes := {}
+INITIALISATION
+    bikes := {}
 
 OPERATIONS
 
-rr <-- add_bike ( bb ) =
-  PRE bb : BIKES_SET & bb : dom ( types )
-  THEN
-    IF bb /: bikes
-    THEN bikes := bikes \/ { bb } || rr := true
-    ELSE rr := false
-    END
-  END ;
+    rr <-- add_bike ( bb ) =
+        PRE bb : BIKE & bb : dom ( types )
+        THEN
+            IF bb /: bikes
+                THEN bikes := bikes \/ { bb } || rr := true
+            ELSE rr := false
+        END
+    END ;
 
-rr <-- remove_bike ( bb ) =
-  PRE bb : BIKES_SET
-  THEN
-    IF bb : bikes
-    THEN bikes := bikes - { bb } || rr := true
-    ELSE rr := false
-    END
-  END ;
+    rr <-- remove_bike ( bb ) =
+        PRE bb : BIKE
+        THEN
+            IF bb : bikes
+                THEN bikes := bikes - { bb } || rr := true
+            ELSE rr := false
+        END
+    END ;
 
-qq <-- query_bike ( bb ) =
-  PRE bb : BIKES_SET
-  THEN
-    IF bb : bikes
-    THEN qq := true
-    ELSE qq := false
+    qq <-- query_bike ( bb ) =
+        PRE bb : BIKE
+            THEN
+            IF bb : bikes
+                THEN qq := true
+            ELSE qq := false
+        END
     END
-  END
 
 END

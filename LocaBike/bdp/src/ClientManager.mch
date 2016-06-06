@@ -1,41 +1,40 @@
-﻿/* ClientManager
- * Author: Rafael Queiroz
- * Creation date: 25/05/16
- */
-MACHINE
+﻿MACHINE
     ClientManager
 
-    SETS NAME
+SETS
+    NAME
 
-    SEES ClientCTX , Boolean
+SEES
+    Boolean , Context
 
-    ABSTRACT_VARIABLES clients
+ABSTRACT_VARIABLES
+    clients
 
-    INVARIANT clients <: CLIENTS_SET
+INVARIANT
+    clients <: CLIENT
 
-    INITIALISATION clients := {}
+INITIALISATION
+    clients := {}
 
-    OPERATIONS
+OPERATIONS
 
-        add_client ( cc ) =
-            PRE cc : CLIENTS_SET
-            THEN
-                clients := clients \/ { cc }
-            END ;
+    add_client ( cc ) =
+        PRE cc : CLIENT
+        THEN clients := clients \/ { cc }
+    END ;
 
-         remove_client ( cc ) =
-             PRE cc : CLIENTS_SET
-             THEN
-                clients := clients - { cc }
-             END ;
+    remove_client ( cc ) =
+        PRE cc : CLIENT
+        THEN clients := clients - { cc }
+    END ;
 
-         qq <-- query_client ( cc ) =
-             PRE cc : CLIENTS_SET
-             THEN
-                 IF cc : clients
-                 THEN qq := true
-                 ELSE qq := false
-                 END
-             END
+    qq <-- query_client ( cc ) =
+        PRE cc : CLIENT
+        THEN
+            IF cc : clients
+                THEN qq := true
+            ELSE qq := false
+        END
+    END
 
 END

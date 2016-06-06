@@ -1,8 +1,8 @@
-﻿MACHINE
+MACHINE
     Type
 
 SEES
-    Boolean , Context , Price
+    Boolean, Context, Price
 
 ABSTRACT_VARIABLES
     types
@@ -15,10 +15,10 @@ INITIALISATION
 
 OPERATIONS
 
-    set_type ( bb , tt ) =
+    set_type ( bb, tt ) =
         PRE bb : BIKE & tt : TYPE & tt : dom ( price )
         THEN types ( bb ) := tt
-    END ;
+    END;
 
     qq <-- query_type ( bb ) =
         PRE bb : BIKE

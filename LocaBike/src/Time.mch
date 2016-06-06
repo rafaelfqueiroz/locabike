@@ -1,4 +1,4 @@
-﻿MACHINE
+MACHINE
     Time
 
 ABSTRACT_VARIABLES
@@ -15,9 +15,9 @@ OPERATIONS
     pass_time ( tt ) =
         PRE tt : NAT
         THEN time := time + tt
-    END ;
-
-    pass_hour =  time := time + 1 ;
+    END;
+    
+    pass_hour =  time := time + 1;
 
     qq <-- query_time =  qq := time
 

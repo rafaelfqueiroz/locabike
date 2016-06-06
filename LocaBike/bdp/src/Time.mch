@@ -1,35 +1,24 @@
-﻿/* Time
- * Author: 
- * Creation date: 30/05/16
- */
-MACHINE
+﻿MACHINE
     Time
 
-    ABSTRACT_VARIABLES time
+ABSTRACT_VARIABLES
+    time
 
-    INVARIANT         time : NAT
+INVARIANT
+    time : NAT
 
-    INITIALISATION    time := 0
+INITIALISATION
+    time := 0
 
-    OPERATIONS
+OPERATIONS
 
-    pass_time =
-      PRE 1 = 1
-      THEN time := time + 1
-      END ;
+    pass_time ( tt ) =
+        PRE tt : NAT
+        THEN time := time + tt
+    END ;
 
-    qq <-- query_time =
-      PRE 1 = 1
-      THEN qq := time
-      END ;
+    pass_hour =  time := time + 1 ;
 
-    qq <-- query_delay ( tt ) =
-      PRE tt : NAT
-      THEN
-        IF tt > time
-        THEN qq := 0
-        ELSE qq := tt - time
-        END
-      END
+    qq <-- query_time =  qq := time
 
 END

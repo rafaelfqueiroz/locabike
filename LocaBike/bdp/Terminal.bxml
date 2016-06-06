@@ -4,7 +4,7 @@
 <Name>Boolean</Name>
 </Referenced_Machine>
 <Referenced_Machine>
-<Name>BikeCTX</Name>
+<Name>Context</Name>
 </Referenced_Machine>
 <Referenced_Machine>
 <Name>Type</Name>
@@ -16,18 +16,18 @@
 </Referenced_Machine>
 </Uses>
 <Abstract_Variables>
-<Id value='terminal_bikes' typref='2466226896'/>
+<Id value='bikes_in_terminal' typref='3603043417'/>
 </Abstract_Variables>
 <Invariant>
 <Exp_Comparison op='&lt;:'>
-<Id value='terminal_bikes' typref='2466226896'/>
-<Id value='bikes' typref='2466226896'/>
+<Id value='bikes_in_terminal' typref='3603043417'/>
+<Id value='bikes' typref='3603043417'/>
 </Exp_Comparison>
 </Invariant>
 <Initialisation>
 <Assignement_Sub>
 <Variables>
-<Id value='terminal_bikes' typref='2466226896'/>
+<Id value='bikes_in_terminal' typref='3603043417'/>
 </Variables>
 <Values>
 <EmptySet typref='3817003670'/>
@@ -37,46 +37,46 @@
 <Operations>
 <Operation name='add_bike_to_terminal'>
 <Output_Parameters>
-<Id value='rr' typref='1806513362'/>
+<Id value='rr' typref='1349572928'/>
 </Output_Parameters>
 <Input_Parameters>
-<Id value='bb' typref='928822259'/>
+<Id value='bb' typref='2701647786'/>
 </Input_Parameters>
 <Precondition>
 <Exp_Comparison op=':'>
-<Id value='bb' typref='928822259'/>
-<Id value='BIKES_SET' typref='2466226896'/>
+<Id value='bb' typref='2701647786'/>
+<Id value='BIKE' typref='3603043417'/>
 </Exp_Comparison>
 </Precondition>
 <Body>
 <If_Sub elseif='no'>
 <Condition>
 <Exp_Comparison op='/:'>
-<Id value='bb' typref='928822259'/>
-<Id value='terminal_bikes' typref='2466226896'/>
+<Id value='bb' typref='2701647786'/>
+<Id value='bikes_in_terminal' typref='3603043417'/>
 </Exp_Comparison>
 </Condition>
 <Then>
 <Nary_Sub op='||'>
 <Assignement_Sub>
 <Variables>
-<Id value='terminal_bikes' typref='2466226896'/>
+<Id value='bikes_in_terminal' typref='3603043417'/>
 </Variables>
 <Values>
-<Binary_Exp op='\/' typref='2466226896'>
-<Id value='terminal_bikes' typref='2466226896'/>
-<Nary_Exp op='{' typref='2466226896'>
-<Id value='bb' typref='928822259'/>
+<Binary_Exp op='\/' typref='3603043417'>
+<Id value='bikes_in_terminal' typref='3603043417'/>
+<Nary_Exp op='{' typref='3603043417'>
+<Id value='bb' typref='2701647786'/>
 </Nary_Exp>
 </Binary_Exp>
 </Values>
 </Assignement_Sub>
 <Assignement_Sub>
 <Variables>
-<Id value='rr' typref='1806513362'/>
+<Id value='rr' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='true' typref='1806513362'/>
+<Id value='true' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
 </Nary_Sub>
@@ -84,10 +84,10 @@
 <Else>
 <Assignement_Sub>
 <Variables>
-<Id value='rr' typref='1806513362'/>
+<Id value='rr' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='false' typref='1806513362'/>
+<Id value='false' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
 </Else>
@@ -96,46 +96,46 @@
 </Operation>
 <Operation name='remove_bike_to_terminal'>
 <Output_Parameters>
-<Id value='rr' typref='1806513362'/>
+<Id value='rr' typref='1349572928'/>
 </Output_Parameters>
 <Input_Parameters>
-<Id value='bb' typref='928822259'/>
+<Id value='bb' typref='2701647786'/>
 </Input_Parameters>
 <Precondition>
 <Exp_Comparison op=':'>
-<Id value='bb' typref='928822259'/>
-<Id value='BIKES_SET' typref='2466226896'/>
+<Id value='bb' typref='2701647786'/>
+<Id value='BIKE' typref='3603043417'/>
 </Exp_Comparison>
 </Precondition>
 <Body>
 <If_Sub elseif='no'>
 <Condition>
 <Exp_Comparison op=':'>
-<Id value='bb' typref='928822259'/>
-<Id value='terminal_bikes' typref='2466226896'/>
+<Id value='bb' typref='2701647786'/>
+<Id value='bikes_in_terminal' typref='3603043417'/>
 </Exp_Comparison>
 </Condition>
 <Then>
 <Nary_Sub op='||'>
 <Assignement_Sub>
 <Variables>
-<Id value='terminal_bikes' typref='2466226896'/>
+<Id value='bikes_in_terminal' typref='3603043417'/>
 </Variables>
 <Values>
-<Binary_Exp op='-' typref='2466226896'>
-<Id value='terminal_bikes' typref='2466226896'/>
-<Nary_Exp op='{' typref='2466226896'>
-<Id value='bb' typref='928822259'/>
+<Binary_Exp op='-' typref='3603043417'>
+<Id value='bikes_in_terminal' typref='3603043417'/>
+<Nary_Exp op='{' typref='3603043417'>
+<Id value='bb' typref='2701647786'/>
 </Nary_Exp>
 </Binary_Exp>
 </Values>
 </Assignement_Sub>
 <Assignement_Sub>
 <Variables>
-<Id value='rr' typref='1806513362'/>
+<Id value='rr' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='true' typref='1806513362'/>
+<Id value='true' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
 </Nary_Sub>
@@ -143,10 +143,10 @@
 <Else>
 <Assignement_Sub>
 <Variables>
-<Id value='rr' typref='1806513362'/>
+<Id value='rr' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='false' typref='1806513362'/>
+<Id value='false' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
 </Else>
@@ -155,42 +155,42 @@
 </Operation>
 <Operation name='query_bike_to_terminal'>
 <Output_Parameters>
-<Id value='qq' typref='1806513362'/>
+<Id value='qq' typref='1349572928'/>
 </Output_Parameters>
 <Input_Parameters>
-<Id value='bb' typref='928822259'/>
+<Id value='bb' typref='2701647786'/>
 </Input_Parameters>
 <Precondition>
 <Exp_Comparison op=':'>
-<Id value='bb' typref='928822259'/>
-<Id value='BIKES_SET' typref='2466226896'/>
+<Id value='bb' typref='2701647786'/>
+<Id value='BIKE' typref='3603043417'/>
 </Exp_Comparison>
 </Precondition>
 <Body>
 <If_Sub elseif='no'>
 <Condition>
 <Exp_Comparison op=':'>
-<Id value='bb' typref='928822259'/>
-<Id value='terminal_bikes' typref='2466226896'/>
+<Id value='bb' typref='2701647786'/>
+<Id value='bikes_in_terminal' typref='3603043417'/>
 </Exp_Comparison>
 </Condition>
 <Then>
 <Assignement_Sub>
 <Variables>
-<Id value='qq' typref='1806513362'/>
+<Id value='qq' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='true' typref='1806513362'/>
+<Id value='true' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
 </Then>
 <Else>
 <Assignement_Sub>
 <Variables>
-<Id value='qq' typref='1806513362'/>
+<Id value='qq' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='false' typref='1806513362'/>
+<Id value='false' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
 </Else>
@@ -199,9 +199,9 @@
 </Operation>
 </Operations>
 <TypeInfos>
-<Type id='2466226896'>
+<Type id='3603043417'>
 <Unary_Exp op='POW'>
-<Id value='BIKES_SET'/>
+<Id value='INTEGER'/>
 </Unary_Exp>
 </Type>
 <Type id='3817003670'>
@@ -209,11 +209,11 @@
 <Generic_Type/>
 </Unary_Exp>
 </Type>
-<Type id='1806513362'>
-<Id value='BOOL_RESPONSE'/>
+<Type id='1349572928'>
+<Id value='BOOLEAN'/>
 </Type>
-<Type id='928822259'>
-<Id value='BIKES_SET'/>
+<Type id='2701647786'>
+<Id value='INTEGER'/>
 </Type>
 </TypeInfos>
 

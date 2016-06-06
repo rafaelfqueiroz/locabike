@@ -1,12 +1,18 @@
 <Machine name='Rent' type='abstraction'>
 <Includes>
 <Referenced_Machine>
-<Name>Penalty</Name>
+<Name>ClientManager</Name>
+</Referenced_Machine>
+<Referenced_Machine>
+<Name>Bike</Name>
 </Referenced_Machine>
 </Includes>
 <Sees>
 <Referenced_Machine>
 <Name>Boolean</Name>
+</Referenced_Machine>
+<Referenced_Machine>
+<Name>Context</Name>
 </Referenced_Machine>
 <Referenced_Machine>
 <Name>Type</Name>
@@ -17,50 +23,36 @@
 <Referenced_Machine>
 <Name>Price</Name>
 </Referenced_Machine>
-<Referenced_Machine>
-<Name>Damage</Name>
-</Referenced_Machine>
-<Referenced_Machine>
-<Name>DamageCTX</Name>
-</Referenced_Machine>
-<Referenced_Machine>
-<Name>ClientCTX</Name>
-</Referenced_Machine>
-<Referenced_Machine>
-<Name>BikeCTX</Name>
-</Referenced_Machine>
-<Referenced_Machine>
-<Name>TypeCTX</Name>
-</Referenced_Machine>
 </Sees>
-<Uses>
-<Referenced_Machine>
-<Name>ClientManager</Name>
-</Referenced_Machine>
-<Referenced_Machine>
-<Name>Bike</Name>
-</Referenced_Machine>
-</Uses>
+<Promotes>
+<Promoted_Operation>add_client</Promoted_Operation>
+<Promoted_Operation>query_client</Promoted_Operation>
+<Promoted_Operation>add_bike</Promoted_Operation>
+<Promoted_Operation>query_bike</Promoted_Operation>
+</Promotes>
 <Abstract_Variables>
-<Id value='rents' typref='1876857716'/>
-<Id value='return_date' typref='4025837511'/>
+<Id value='rents' typref='103245008'/>
+<Id value='return_date' typref='103245008'/>
 </Abstract_Variables>
 <Invariant>
 <Nary_Pred op='&amp;'>
 <Exp_Comparison op=':'>
-<Id value='rents' typref='1876857716'/>
-<Binary_Exp op='&gt;+&gt;' typref='2599352591'>
-<Id value='clients' typref='2177902086'/>
-<Id value='bikes' typref='2466226896'/>
+<Id value='rents' typref='103245008'/>
+<Binary_Exp op='&gt;+&gt;' typref='3083833907'>
+<Id value='clients' typref='3603043417'/>
+<Id value='bikes' typref='3603043417'/>
 </Binary_Exp>
 </Exp_Comparison>
 <Exp_Comparison op=':'>
-<Id value='return_date' typref='4025837511'/>
-<Binary_Exp op='--&gt;' typref='2163582844'>
-<Unary_Exp op='ran' typref='2466226896'>
-<Id value='rents' typref='1876857716'/>
+<Id value='return_date' typref='103245008'/>
+<Binary_Exp op='--&gt;' typref='3083833907'>
+<Unary_Exp op='ran' typref='3603043417'>
+<Id value='rents' typref='103245008'/>
 </Unary_Exp>
-<Id value='NAT1' typref='3603043417'/>
+<Binary_Exp op='..' typref='3603043417'>
+<Integer_Literal value='1' typref='2701647786'/>
+<Integer_Literal value='100' typref='2701647786'/>
+</Binary_Exp>
 </Binary_Exp>
 </Exp_Comparison>
 </Nary_Pred>
@@ -68,8 +60,8 @@
 <Initialisation>
 <Assignement_Sub>
 <Variables>
-<Id value='rents' typref='1876857716'/>
-<Id value='return_date' typref='4025837511'/>
+<Id value='rents' typref='103245008'/>
+<Id value='return_date' typref='103245008'/>
 </Variables>
 <Values>
 <EmptySet typref='3817003670'/>
@@ -78,24 +70,141 @@
 </Assignement_Sub>
 </Initialisation>
 <Operations>
-<Operation name='rent'>
+<Operation name='remove_non_renter_client'>
 <Output_Parameters>
-<Id value='rr' typref='1806513362'/>
+<Id value='rr' typref='1349572928'/>
 </Output_Parameters>
 <Input_Parameters>
-<Id value='cc' typref='1764431549'/>
-<Id value='bb' typref='928822259'/>
+<Id value='cc' typref='2701647786'/>
+</Input_Parameters>
+<Precondition>
+<Exp_Comparison op=':'>
+<Id value='cc' typref='2701647786'/>
+<Id value='CLIENT' typref='3603043417'/>
+</Exp_Comparison>
+</Precondition>
+<Body>
+<If_Sub elseif='no'>
+<Condition>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op=':'>
+<Id value='cc' typref='2701647786'/>
+<Id value='clients' typref='3603043417'/>
+</Exp_Comparison>
+<Exp_Comparison op='/:'>
+<Id value='cc' typref='2701647786'/>
+<Unary_Exp op='dom' typref='3603043417'>
+<Id value='rents' typref='103245008'/>
+</Unary_Exp>
+</Exp_Comparison>
+</Nary_Pred>
+</Condition>
+<Then>
+<Nary_Sub op='||'>
+<Operation_Call>
+<Name>
+<Id value='remove_client'/>
+</Name>
+<Input_Parameters>
+<Id value='cc' typref='2701647786'/>
+</Input_Parameters>
+</Operation_Call>
+<Assignement_Sub>
+<Variables>
+<Id value='rr' typref='1349572928'/>
+</Variables>
+<Values>
+<Id value='true' typref='1349572928'/>
+</Values>
+</Assignement_Sub>
+</Nary_Sub>
+</Then>
+<Else>
+<Assignement_Sub>
+<Variables>
+<Id value='rr' typref='1349572928'/>
+</Variables>
+<Values>
+<Id value='false' typref='1349572928'/>
+</Values>
+</Assignement_Sub>
+</Else>
+</If_Sub>
+</Body>
+</Operation>
+<Operation name='remove_non_rented_bike'>
+<Output_Parameters>
+<Id value='rr' typref='1349572928'/>
+</Output_Parameters>
+<Input_Parameters>
+<Id value='vv' typref='2701647786'/>
+</Input_Parameters>
+<Precondition>
+<Exp_Comparison op=':'>
+<Id value='vv' typref='2701647786'/>
+<Id value='BIKE' typref='3603043417'/>
+</Exp_Comparison>
+</Precondition>
+<Body>
+<If_Sub elseif='no'>
+<Condition>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op=':'>
+<Id value='vv' typref='2701647786'/>
+<Id value='bikes' typref='3603043417'/>
+</Exp_Comparison>
+<Exp_Comparison op='/:'>
+<Id value='vv' typref='2701647786'/>
+<Unary_Exp op='ran' typref='3603043417'>
+<Id value='rents' typref='103245008'/>
+</Unary_Exp>
+</Exp_Comparison>
+</Nary_Pred>
+</Condition>
+<Then>
+<Operation_Call>
+<Name>
+<Id value='remove_bike'/>
+</Name>
+<Input_Parameters>
+<Id value='vv' typref='2701647786'/>
+</Input_Parameters>
+<Output_Parameters>
+<Id value='rr' typref='1349572928'/>
+</Output_Parameters>
+</Operation_Call>
+</Then>
+<Else>
+<Assignement_Sub>
+<Variables>
+<Id value='rr' typref='1349572928'/>
+</Variables>
+<Values>
+<Id value='false' typref='1349572928'/>
+</Values>
+</Assignement_Sub>
+</Else>
+</If_Sub>
+</Body>
+</Operation>
+<Operation name='rent'>
+<Output_Parameters>
+<Id value='rr' typref='1349572928'/>
+</Output_Parameters>
+<Input_Parameters>
+<Id value='cc' typref='2701647786'/>
+<Id value='vv' typref='2701647786'/>
 <Id value='rd' typref='2701647786'/>
 </Input_Parameters>
 <Precondition>
 <Nary_Pred op='&amp;'>
 <Exp_Comparison op=':'>
-<Id value='bb' typref='928822259'/>
-<Id value='BIKES_SET' typref='2466226896'/>
+<Id value='vv' typref='2701647786'/>
+<Id value='BIKE' typref='3603043417'/>
 </Exp_Comparison>
 <Exp_Comparison op=':'>
-<Id value='cc' typref='1764431549'/>
-<Id value='CLIENTS_SET' typref='2177902086'/>
+<Id value='cc' typref='2701647786'/>
+<Id value='CLIENT' typref='3603043417'/>
 </Exp_Comparison>
 <Exp_Comparison op=':'>
 <Id value='rd' typref='2701647786'/>
@@ -105,6 +214,10 @@
 <Id value='rd' typref='2701647786'/>
 <Id value='time' typref='2701647786'/>
 </Exp_Comparison>
+<Exp_Comparison op='&lt;='>
+<Id value='rd' typref='2701647786'/>
+<Integer_Literal value='100' typref='2701647786'/>
+</Exp_Comparison>
 </Nary_Pred>
 </Precondition>
 <Body>
@@ -112,31 +225,24 @@
 <Condition>
 <Nary_Pred op='&amp;'>
 <Exp_Comparison op=':'>
-<Id value='bb' typref='928822259'/>
-<Id value='bikes' typref='2466226896'/>
+<Id value='vv' typref='2701647786'/>
+<Id value='bikes' typref='3603043417'/>
 </Exp_Comparison>
 <Exp_Comparison op=':'>
-<Id value='cc' typref='1764431549'/>
-<Id value='clients' typref='2177902086'/>
+<Id value='cc' typref='2701647786'/>
+<Id value='clients' typref='3603043417'/>
 </Exp_Comparison>
 <Exp_Comparison op='/:'>
-<Id value='cc' typref='1764431549'/>
-<Unary_Exp op='dom' typref='2177902086'>
-<Id value='rents' typref='1876857716'/>
+<Id value='cc' typref='2701647786'/>
+<Unary_Exp op='dom' typref='3603043417'>
+<Id value='rents' typref='103245008'/>
 </Unary_Exp>
 </Exp_Comparison>
 <Exp_Comparison op='/:'>
-<Id value='bb' typref='928822259'/>
-<Unary_Exp op='ran' typref='2466226896'>
-<Id value='rents' typref='1876857716'/>
+<Id value='vv' typref='2701647786'/>
+<Unary_Exp op='ran' typref='3603043417'>
+<Id value='rents' typref='103245008'/>
 </Unary_Exp>
-</Exp_Comparison>
-<Exp_Comparison op='='>
-<Binary_Exp op='(' typref='2701647786'>
-<Id value='penalty' typref='1007061117'/>
-<Id value='cc' typref='1764431549'/>
-</Binary_Exp>
-<Integer_Literal value='0' typref='2701647786'/>
 </Exp_Comparison>
 </Nary_Pred>
 </Condition>
@@ -144,20 +250,20 @@
 <Nary_Sub op='||'>
 <Assignement_Sub>
 <Variables>
-<Binary_Exp op='(' typref='928822259'>
-<Id value='rents' typref='1876857716'/>
-<Id value='cc' typref='1764431549'/>
+<Binary_Exp op='(' typref='2701647786'>
+<Id value='rents' typref='103245008'/>
+<Id value='cc' typref='2701647786'/>
 </Binary_Exp>
 </Variables>
 <Values>
-<Id value='bb' typref='928822259'/>
+<Id value='vv' typref='2701647786'/>
 </Values>
 </Assignement_Sub>
 <Assignement_Sub>
 <Variables>
 <Binary_Exp op='(' typref='2701647786'>
-<Id value='return_date' typref='4025837511'/>
-<Id value='bb' typref='928822259'/>
+<Id value='return_date' typref='103245008'/>
+<Id value='vv' typref='2701647786'/>
 </Binary_Exp>
 </Variables>
 <Values>
@@ -166,10 +272,10 @@
 </Assignement_Sub>
 <Assignement_Sub>
 <Variables>
-<Id value='rr' typref='1806513362'/>
+<Id value='rr' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='true' typref='1806513362'/>
+<Id value='true' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
 </Nary_Sub>
@@ -177,10 +283,10 @@
 <Else>
 <Assignement_Sub>
 <Variables>
-<Id value='rr' typref='1806513362'/>
+<Id value='rr' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='false' typref='1806513362'/>
+<Id value='false' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
 </Else>
@@ -189,25 +295,24 @@
 </Operation>
 <Operation name='return'>
 <Output_Parameters>
-<Id value='rr' typref='1806513362'/>
-<Id value='rp' typref='1806513362'/>
+<Id value='rr' typref='1349572928'/>
 </Output_Parameters>
 <Input_Parameters>
-<Id value='cc' typref='1764431549'/>
+<Id value='cc' typref='2701647786'/>
 </Input_Parameters>
 <Precondition>
 <Exp_Comparison op=':'>
-<Id value='cc' typref='1764431549'/>
-<Id value='CLIENTS_SET' typref='2177902086'/>
+<Id value='cc' typref='2701647786'/>
+<Id value='CLIENT' typref='3603043417'/>
 </Exp_Comparison>
 </Precondition>
 <Body>
 <If_Sub elseif='no'>
 <Condition>
 <Exp_Comparison op=':'>
-<Id value='cc' typref='1764431549'/>
-<Unary_Exp op='dom' typref='2177902086'>
-<Id value='rents' typref='1876857716'/>
+<Id value='cc' typref='2701647786'/>
+<Unary_Exp op='dom' typref='3603043417'>
+<Id value='rents' typref='103245008'/>
 </Unary_Exp>
 </Exp_Comparison>
 </Condition>
@@ -216,10 +321,10 @@
 <Condition>
 <Exp_Comparison op='&lt;'>
 <Binary_Exp op='(' typref='2701647786'>
-<Id value='return_date' typref='4025837511'/>
-<Binary_Exp op='(' typref='928822259'>
-<Id value='rents' typref='1876857716'/>
-<Id value='cc' typref='1764431549'/>
+<Id value='return_date' typref='103245008'/>
+<Binary_Exp op='(' typref='2701647786'>
+<Id value='rents' typref='103245008'/>
+<Id value='cc' typref='2701647786'/>
 </Binary_Exp>
 </Binary_Exp>
 <Id value='time' typref='2701647786'/>
@@ -229,77 +334,39 @@
 <Nary_Sub op='||'>
 <Assignement_Sub>
 <Variables>
-<Id value='rents' typref='1876857716'/>
+<Id value='rents' typref='103245008'/>
 </Variables>
 <Values>
-<Binary_Exp op='&lt;&lt;|' typref='1876857716'>
-<Nary_Exp op='{' typref='2177902086'>
-<Id value='cc' typref='1764431549'/>
+<Binary_Exp op='&lt;&lt;|' typref='103245008'>
+<Nary_Exp op='{' typref='3603043417'>
+<Id value='cc' typref='2701647786'/>
 </Nary_Exp>
-<Id value='rents' typref='1876857716'/>
+<Id value='rents' typref='103245008'/>
 </Binary_Exp>
 </Values>
 </Assignement_Sub>
 <Assignement_Sub>
 <Variables>
-<Id value='return_date' typref='4025837511'/>
+<Id value='return_date' typref='103245008'/>
 </Variables>
 <Values>
-<Binary_Exp op='&lt;&lt;|' typref='4025837511'>
-<EmptySet typref='2466226896'/>
-<Id value='return_date' typref='4025837511'/>
+<Binary_Exp op='&lt;&lt;|' typref='103245008'>
+<Nary_Exp op='{' typref='3603043417'>
+<Binary_Exp op='(' typref='2701647786'>
+<Id value='rents' typref='103245008'/>
+<Id value='cc' typref='2701647786'/>
+</Binary_Exp>
+</Nary_Exp>
+<Id value='return_date' typref='103245008'/>
 </Binary_Exp>
 </Values>
 </Assignement_Sub>
-<Operation_Call>
-<Name>
-<Id value='apply_penalty'/>
-</Name>
-<Input_Parameters>
-<Id value='cc' typref='1764431549'/>
-<Binary_Exp op='(' typref='2701647786'>
-<Id value='damage_price' typref='2317257241'/>
-<Binary_Exp op='(' typref='1945869857'>
-<Id value='damages' typref='1003861904'/>
-<Binary_Exp op='(' typref='928822259'>
-<Id value='rents' typref='1876857716'/>
-<Id value='cc' typref='1764431549'/>
-</Binary_Exp>
-</Binary_Exp>
-</Binary_Exp>
-<Binary_Exp op='-' typref='2701647786'>
-<Id value='time' typref='2701647786'/>
-<Binary_Exp op='*' typref='2701647786'>
-<Binary_Exp op='(' typref='2701647786'>
-<Id value='return_date' typref='4025837511'/>
-<Binary_Exp op='(' typref='928822259'>
-<Id value='rents' typref='1876857716'/>
-<Id value='cc' typref='1764431549'/>
-</Binary_Exp>
-</Binary_Exp>
-<Binary_Exp op='(' typref='2701647786'>
-<Id value='delay_price' typref='2418527566'/>
-<Binary_Exp op='(' typref='59484332'>
-<Id value='types' typref='3187665349'/>
-<Binary_Exp op='(' typref='928822259'>
-<Id value='rents' typref='1876857716'/>
-<Id value='cc' typref='1764431549'/>
-</Binary_Exp>
-</Binary_Exp>
-</Binary_Exp>
-</Binary_Exp>
-</Binary_Exp>
-</Input_Parameters>
-<Output_Parameters>
-<Id value='rp' typref='1806513362'/>
-</Output_Parameters>
-</Operation_Call>
 <Assignement_Sub>
 <Variables>
-<Id value='rr' typref='1806513362'/>
+<Id value='rr' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='true' typref='1806513362'/>
+<Id value='true' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
 </Nary_Sub>
@@ -308,61 +375,39 @@
 <Nary_Sub op='||'>
 <Assignement_Sub>
 <Variables>
-<Id value='rents' typref='1876857716'/>
+<Id value='rents' typref='103245008'/>
 </Variables>
 <Values>
-<Binary_Exp op='&lt;&lt;|' typref='1876857716'>
-<Nary_Exp op='{' typref='2177902086'>
-<Id value='cc' typref='1764431549'/>
+<Binary_Exp op='&lt;&lt;|' typref='103245008'>
+<Nary_Exp op='{' typref='3603043417'>
+<Id value='cc' typref='2701647786'/>
 </Nary_Exp>
-<Id value='rents' typref='1876857716'/>
+<Id value='rents' typref='103245008'/>
 </Binary_Exp>
 </Values>
 </Assignement_Sub>
 <Assignement_Sub>
 <Variables>
-<Id value='return_date' typref='4025837511'/>
+<Id value='return_date' typref='103245008'/>
 </Variables>
 <Values>
-<Binary_Exp op='&lt;&lt;|' typref='4025837511'>
-<Nary_Exp op='{' typref='2466226896'>
-<Binary_Exp op='(' typref='928822259'>
-<Id value='rents' typref='1876857716'/>
-<Id value='cc' typref='1764431549'/>
-</Binary_Exp>
-</Nary_Exp>
-<Id value='return_date' typref='4025837511'/>
-</Binary_Exp>
-</Values>
-</Assignement_Sub>
-<Operation_Call>
-<Name>
-<Id value='apply_penalty'/>
-</Name>
-<Input_Parameters>
-<Id value='cc' typref='1764431549'/>
+<Binary_Exp op='&lt;&lt;|' typref='103245008'>
+<Nary_Exp op='{' typref='3603043417'>
 <Binary_Exp op='(' typref='2701647786'>
-<Id value='damage_price' typref='2317257241'/>
-<Binary_Exp op='(' typref='1945869857'>
-<Id value='damages' typref='1003861904'/>
-<Binary_Exp op='(' typref='928822259'>
-<Id value='rents' typref='1876857716'/>
-<Id value='cc' typref='1764431549'/>
+<Id value='rents' typref='103245008'/>
+<Id value='cc' typref='2701647786'/>
 </Binary_Exp>
+</Nary_Exp>
+<Id value='return_date' typref='103245008'/>
 </Binary_Exp>
-</Binary_Exp>
-<Integer_Literal value='0' typref='2701647786'/>
-</Input_Parameters>
-<Output_Parameters>
-<Id value='rp' typref='1806513362'/>
-</Output_Parameters>
-</Operation_Call>
+</Values>
+</Assignement_Sub>
 <Assignement_Sub>
 <Variables>
-<Id value='rr' typref='1806513362'/>
+<Id value='rr' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='true' typref='1806513362'/>
+<Id value='true' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
 </Nary_Sub>
@@ -370,45 +415,35 @@
 </If_Sub>
 </Then>
 <Else>
-<Nary_Sub op='||'>
 <Assignement_Sub>
 <Variables>
-<Id value='rr' typref='1806513362'/>
+<Id value='rr' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='false' typref='1806513362'/>
+<Id value='false' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
-<Assignement_Sub>
-<Variables>
-<Id value='rp' typref='1806513362'/>
-</Variables>
-<Values>
-<Id value='false' typref='1806513362'/>
-</Values>
-</Assignement_Sub>
-</Nary_Sub>
 </Else>
 </If_Sub>
 </Body>
 </Operation>
 <Operation name='query_rents'>
 <Output_Parameters>
-<Id value='qq' typref='1806513362'/>
+<Id value='qq' typref='1349572928'/>
 </Output_Parameters>
 <Input_Parameters>
-<Id value='cc' typref='1764431549'/>
-<Id value='bb' typref='928822259'/>
+<Id value='cc' typref='2701647786'/>
+<Id value='vv' typref='2701647786'/>
 </Input_Parameters>
 <Precondition>
 <Nary_Pred op='&amp;'>
 <Exp_Comparison op=':'>
-<Id value='cc' typref='1764431549'/>
-<Id value='CLIENTS_SET' typref='2177902086'/>
+<Id value='cc' typref='2701647786'/>
+<Id value='CLIENT' typref='3603043417'/>
 </Exp_Comparison>
 <Exp_Comparison op=':'>
-<Id value='bb' typref='928822259'/>
-<Id value='BIKES_SET' typref='2466226896'/>
+<Id value='vv' typref='2701647786'/>
+<Id value='BIKE' typref='3603043417'/>
 </Exp_Comparison>
 </Nary_Pred>
 </Precondition>
@@ -417,43 +452,43 @@
 <Condition>
 <Nary_Pred op='&amp;'>
 <Exp_Comparison op=':'>
-<Id value='cc' typref='1764431549'/>
-<Unary_Exp op='dom' typref='2177902086'>
-<Id value='rents' typref='1876857716'/>
+<Id value='cc' typref='2701647786'/>
+<Unary_Exp op='dom' typref='3603043417'>
+<Id value='rents' typref='103245008'/>
 </Unary_Exp>
 </Exp_Comparison>
 <Exp_Comparison op=':'>
-<Id value='bb' typref='928822259'/>
-<Unary_Exp op='ran' typref='2466226896'>
-<Id value='rents' typref='1876857716'/>
+<Id value='vv' typref='2701647786'/>
+<Unary_Exp op='ran' typref='3603043417'>
+<Id value='rents' typref='103245008'/>
 </Unary_Exp>
 </Exp_Comparison>
 <Exp_Comparison op='='>
-<Binary_Exp op='(' typref='928822259'>
-<Id value='rents' typref='1876857716'/>
-<Id value='cc' typref='1764431549'/>
+<Binary_Exp op='(' typref='2701647786'>
+<Id value='rents' typref='103245008'/>
+<Id value='cc' typref='2701647786'/>
 </Binary_Exp>
-<Id value='bb' typref='928822259'/>
+<Id value='vv' typref='2701647786'/>
 </Exp_Comparison>
 </Nary_Pred>
 </Condition>
 <Then>
 <Assignement_Sub>
 <Variables>
-<Id value='qq' typref='1806513362'/>
+<Id value='qq' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='true' typref='1806513362'/>
+<Id value='true' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
 </Then>
 <Else>
 <Assignement_Sub>
 <Variables>
-<Id value='qq' typref='1806513362'/>
+<Id value='qq' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='false' typref='1806513362'/>
+<Id value='false' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
 </Else>
@@ -462,44 +497,44 @@
 </Operation>
 <Operation name='query_rented'>
 <Output_Parameters>
-<Id value='qq' typref='1806513362'/>
+<Id value='qq' typref='1349572928'/>
 </Output_Parameters>
 <Input_Parameters>
-<Id value='bb' typref='928822259'/>
+<Id value='vv' typref='2701647786'/>
 </Input_Parameters>
 <Precondition>
 <Exp_Comparison op=':'>
-<Id value='bb' typref='928822259'/>
-<Id value='BIKES_SET' typref='2466226896'/>
+<Id value='vv' typref='2701647786'/>
+<Id value='BIKE' typref='3603043417'/>
 </Exp_Comparison>
 </Precondition>
 <Body>
 <If_Sub elseif='no'>
 <Condition>
 <Exp_Comparison op=':'>
-<Id value='bb' typref='928822259'/>
-<Unary_Exp op='ran' typref='2466226896'>
-<Id value='rents' typref='1876857716'/>
+<Id value='vv' typref='2701647786'/>
+<Unary_Exp op='ran' typref='3603043417'>
+<Id value='rents' typref='103245008'/>
 </Unary_Exp>
 </Exp_Comparison>
 </Condition>
 <Then>
 <Assignement_Sub>
 <Variables>
-<Id value='qq' typref='1806513362'/>
+<Id value='qq' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='true' typref='1806513362'/>
+<Id value='true' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
 </Then>
 <Else>
 <Assignement_Sub>
 <Variables>
-<Id value='qq' typref='1806513362'/>
+<Id value='qq' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='false' typref='1806513362'/>
+<Id value='false' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
 </Else>
@@ -508,44 +543,44 @@
 </Operation>
 <Operation name='query_renter'>
 <Output_Parameters>
-<Id value='qq' typref='1806513362'/>
+<Id value='qq' typref='1349572928'/>
 </Output_Parameters>
 <Input_Parameters>
-<Id value='cc' typref='1764431549'/>
+<Id value='cc' typref='2701647786'/>
 </Input_Parameters>
 <Precondition>
 <Exp_Comparison op=':'>
-<Id value='cc' typref='1764431549'/>
-<Id value='CLIENTS_SET' typref='2177902086'/>
+<Id value='cc' typref='2701647786'/>
+<Id value='CLIENT' typref='3603043417'/>
 </Exp_Comparison>
 </Precondition>
 <Body>
 <If_Sub elseif='no'>
 <Condition>
 <Exp_Comparison op=':'>
-<Id value='cc' typref='1764431549'/>
-<Unary_Exp op='dom' typref='2177902086'>
-<Id value='rents' typref='1876857716'/>
+<Id value='cc' typref='2701647786'/>
+<Unary_Exp op='dom' typref='3603043417'>
+<Id value='rents' typref='103245008'/>
 </Unary_Exp>
 </Exp_Comparison>
 </Condition>
 <Then>
 <Assignement_Sub>
 <Variables>
-<Id value='qq' typref='1806513362'/>
+<Id value='qq' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='true' typref='1806513362'/>
+<Id value='true' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
 </Then>
 <Else>
 <Assignement_Sub>
 <Variables>
-<Id value='qq' typref='1806513362'/>
+<Id value='qq' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='false' typref='1806513362'/>
+<Id value='false' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
 </Else>
@@ -554,47 +589,19 @@
 </Operation>
 </Operations>
 <TypeInfos>
-<Type id='1876857716'>
+<Type id='103245008'>
 <Unary_Exp op='POW'>
 <Binary_Exp op='*'>
-<Id value='CLIENTS_SET'/>
-<Id value='BIKES_SET'/>
-</Binary_Exp>
-</Unary_Exp>
-</Type>
-<Type id='4025837511'>
-<Unary_Exp op='POW'>
-<Binary_Exp op='*'>
-<Id value='BIKES_SET'/>
+<Id value='INTEGER'/>
 <Id value='INTEGER'/>
 </Binary_Exp>
 </Unary_Exp>
 </Type>
-<Type id='2599352591'>
+<Type id='3083833907'>
 <Unary_Exp op='POW'>
 <Unary_Exp op='POW'>
 <Binary_Exp op='*'>
-<Id value='CLIENTS_SET'/>
-<Id value='BIKES_SET'/>
-</Binary_Exp>
-</Unary_Exp>
-</Unary_Exp>
-</Type>
-<Type id='2177902086'>
-<Unary_Exp op='POW'>
-<Id value='CLIENTS_SET'/>
-</Unary_Exp>
-</Type>
-<Type id='2466226896'>
-<Unary_Exp op='POW'>
-<Id value='BIKES_SET'/>
-</Unary_Exp>
-</Type>
-<Type id='2163582844'>
-<Unary_Exp op='POW'>
-<Unary_Exp op='POW'>
-<Binary_Exp op='*'>
-<Id value='BIKES_SET'/>
+<Id value='INTEGER'/>
 <Id value='INTEGER'/>
 </Binary_Exp>
 </Unary_Exp>
@@ -605,68 +612,16 @@
 <Id value='INTEGER'/>
 </Unary_Exp>
 </Type>
+<Type id='2701647786'>
+<Id value='INTEGER'/>
+</Type>
 <Type id='3817003670'>
 <Unary_Exp op='POW'>
 <Generic_Type/>
 </Unary_Exp>
 </Type>
-<Type id='1806513362'>
-<Id value='BOOL_RESPONSE'/>
-</Type>
-<Type id='1764431549'>
-<Id value='CLIENTS_SET'/>
-</Type>
-<Type id='928822259'>
-<Id value='BIKES_SET'/>
-</Type>
-<Type id='2701647786'>
-<Id value='INTEGER'/>
-</Type>
-<Type id='1007061117'>
-<Unary_Exp op='POW'>
-<Binary_Exp op='*'>
-<Id value='CLIENTS_SET'/>
-<Id value='INTEGER'/>
-</Binary_Exp>
-</Unary_Exp>
-</Type>
-<Type id='2317257241'>
-<Unary_Exp op='POW'>
-<Binary_Exp op='*'>
-<Id value='DAMAGES_SET'/>
-<Id value='INTEGER'/>
-</Binary_Exp>
-</Unary_Exp>
-</Type>
-<Type id='1945869857'>
-<Id value='DAMAGES_SET'/>
-</Type>
-<Type id='1003861904'>
-<Unary_Exp op='POW'>
-<Binary_Exp op='*'>
-<Id value='BIKES_SET'/>
-<Id value='DAMAGES_SET'/>
-</Binary_Exp>
-</Unary_Exp>
-</Type>
-<Type id='2418527566'>
-<Unary_Exp op='POW'>
-<Binary_Exp op='*'>
-<Id value='TYPES_SET'/>
-<Id value='INTEGER'/>
-</Binary_Exp>
-</Unary_Exp>
-</Type>
-<Type id='59484332'>
-<Id value='TYPES_SET'/>
-</Type>
-<Type id='3187665349'>
-<Unary_Exp op='POW'>
-<Binary_Exp op='*'>
-<Id value='BIKES_SET'/>
-<Id value='TYPES_SET'/>
-</Binary_Exp>
-</Unary_Exp>
+<Type id='1349572928'>
+<Id value='BOOLEAN'/>
 </Type>
 </TypeInfos>
 

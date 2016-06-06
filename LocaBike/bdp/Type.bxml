@@ -4,31 +4,28 @@
 <Name>Boolean</Name>
 </Referenced_Machine>
 <Referenced_Machine>
-<Name>BikeCTX</Name>
-</Referenced_Machine>
-<Referenced_Machine>
-<Name>TypeCTX</Name>
+<Name>Context</Name>
 </Referenced_Machine>
 <Referenced_Machine>
 <Name>Price</Name>
 </Referenced_Machine>
 </Sees>
 <Abstract_Variables>
-<Id value='types' typref='3187665349'/>
+<Id value='types' typref='2383197876'/>
 </Abstract_Variables>
 <Invariant>
 <Exp_Comparison op=':'>
-<Id value='types' typref='3187665349'/>
-<Binary_Exp op='+-&gt;' typref='3832165502'>
-<Id value='BIKES_SET' typref='2466226896'/>
-<Id value='TYPES_SET' typref='4236453719'/>
+<Id value='types' typref='2383197876'/>
+<Binary_Exp op='+-&gt;' typref='3499779749'>
+<Id value='BIKE' typref='3603043417'/>
+<Id value='TYPE' typref='3132045039'/>
 </Binary_Exp>
 </Exp_Comparison>
 </Invariant>
 <Initialisation>
 <Assignement_Sub>
 <Variables>
-<Id value='types' typref='3187665349'/>
+<Id value='types' typref='2383197876'/>
 </Variables>
 <Values>
 <EmptySet typref='3817003670'/>
@@ -36,25 +33,25 @@
 </Assignement_Sub>
 </Initialisation>
 <Operations>
-<Operation name='set_category'>
+<Operation name='set_type'>
 <Input_Parameters>
-<Id value='bb' typref='928822259'/>
-<Id value='tt' typref='59484332'/>
+<Id value='bb' typref='2701647786'/>
+<Id value='tt' typref='1690934634'/>
 </Input_Parameters>
 <Precondition>
 <Nary_Pred op='&amp;'>
 <Exp_Comparison op=':'>
-<Id value='bb' typref='928822259'/>
-<Id value='BIKES_SET' typref='2466226896'/>
+<Id value='bb' typref='2701647786'/>
+<Id value='BIKE' typref='3603043417'/>
 </Exp_Comparison>
 <Exp_Comparison op=':'>
-<Id value='tt' typref='59484332'/>
-<Id value='TYPES_SET' typref='4236453719'/>
+<Id value='tt' typref='1690934634'/>
+<Id value='TYPE' typref='3132045039'/>
 </Exp_Comparison>
 <Exp_Comparison op=':'>
-<Id value='tt' typref='59484332'/>
-<Unary_Exp op='dom' typref='4236453719'>
-<Id value='price' typref='2418527566'/>
+<Id value='tt' typref='1690934634'/>
+<Unary_Exp op='dom' typref='3132045039'>
+<Id value='price' typref='2182059124'/>
 </Unary_Exp>
 </Exp_Comparison>
 </Nary_Pred>
@@ -62,49 +59,49 @@
 <Body>
 <Assignement_Sub>
 <Variables>
-<Binary_Exp op='(' typref='59484332'>
-<Id value='types' typref='3187665349'/>
-<Id value='bb' typref='928822259'/>
+<Binary_Exp op='(' typref='1690934634'>
+<Id value='types' typref='2383197876'/>
+<Id value='bb' typref='2701647786'/>
 </Binary_Exp>
 </Variables>
 <Values>
-<Id value='tt' typref='59484332'/>
+<Id value='tt' typref='1690934634'/>
 </Values>
 </Assignement_Sub>
 </Body>
 </Operation>
 <Operation name='query_type'>
 <Output_Parameters>
-<Id value='qq' typref='59484332'/>
+<Id value='qq' typref='1690934634'/>
 </Output_Parameters>
 <Input_Parameters>
-<Id value='bb' typref='928822259'/>
+<Id value='bb' typref='2701647786'/>
 </Input_Parameters>
 <Precondition>
 <Exp_Comparison op=':'>
-<Id value='bb' typref='928822259'/>
-<Id value='BIKES_SET' typref='2466226896'/>
+<Id value='bb' typref='2701647786'/>
+<Id value='BIKE' typref='3603043417'/>
 </Exp_Comparison>
 </Precondition>
 <Body>
 <If_Sub elseif='no'>
 <Condition>
 <Exp_Comparison op=':'>
-<Id value='bb' typref='928822259'/>
-<Unary_Exp op='dom' typref='2466226896'>
-<Id value='types' typref='3187665349'/>
+<Id value='bb' typref='2701647786'/>
+<Unary_Exp op='dom' typref='3603043417'>
+<Id value='types' typref='2383197876'/>
 </Unary_Exp>
 </Exp_Comparison>
 </Condition>
 <Then>
 <Assignement_Sub>
 <Variables>
-<Id value='qq' typref='59484332'/>
+<Id value='qq' typref='1690934634'/>
 </Variables>
 <Values>
-<Binary_Exp op='(' typref='59484332'>
-<Id value='types' typref='3187665349'/>
-<Id value='bb' typref='928822259'/>
+<Binary_Exp op='(' typref='1690934634'>
+<Id value='types' typref='2383197876'/>
+<Id value='bb' typref='2701647786'/>
 </Binary_Exp>
 </Values>
 </Assignement_Sub>
@@ -112,10 +109,10 @@
 <Else>
 <Becomes_In>
 <Variables>
-<Id value='qq' typref='59484332'/>
+<Id value='qq' typref='1690934634'/>
 </Variables>
 <Value>
-<Id value='TYPES_SET' typref='4236453719'/>
+<Id value='TYPE' typref='3132045039'/>
 </Value>
 </Becomes_In>
 </Else>
@@ -124,32 +121,32 @@
 </Operation>
 </Operations>
 <TypeInfos>
-<Type id='3187665349'>
+<Type id='2383197876'>
 <Unary_Exp op='POW'>
 <Binary_Exp op='*'>
-<Id value='BIKES_SET'/>
-<Id value='TYPES_SET'/>
+<Id value='INTEGER'/>
+<Id value='TYPE'/>
 </Binary_Exp>
 </Unary_Exp>
 </Type>
-<Type id='3832165502'>
+<Type id='3499779749'>
 <Unary_Exp op='POW'>
 <Unary_Exp op='POW'>
 <Binary_Exp op='*'>
-<Id value='BIKES_SET'/>
-<Id value='TYPES_SET'/>
+<Id value='INTEGER'/>
+<Id value='TYPE'/>
 </Binary_Exp>
 </Unary_Exp>
 </Unary_Exp>
 </Type>
-<Type id='2466226896'>
+<Type id='3603043417'>
 <Unary_Exp op='POW'>
-<Id value='BIKES_SET'/>
+<Id value='INTEGER'/>
 </Unary_Exp>
 </Type>
-<Type id='4236453719'>
+<Type id='3132045039'>
 <Unary_Exp op='POW'>
-<Id value='TYPES_SET'/>
+<Id value='TYPE'/>
 </Unary_Exp>
 </Type>
 <Type id='3817003670'>
@@ -157,16 +154,16 @@
 <Generic_Type/>
 </Unary_Exp>
 </Type>
-<Type id='928822259'>
-<Id value='BIKES_SET'/>
+<Type id='2701647786'>
+<Id value='INTEGER'/>
 </Type>
-<Type id='59484332'>
-<Id value='TYPES_SET'/>
+<Type id='1690934634'>
+<Id value='TYPE'/>
 </Type>
-<Type id='2418527566'>
+<Type id='2182059124'>
 <Unary_Exp op='POW'>
 <Binary_Exp op='*'>
-<Id value='TYPES_SET'/>
+<Id value='TYPE'/>
 <Id value='INTEGER'/>
 </Binary_Exp>
 </Unary_Exp>

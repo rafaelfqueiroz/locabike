@@ -1,11 +1,11 @@
-﻿MACHINE
+MACHINE
     ClientManager
 
 SETS
     NAME
 
 SEES
-    Boolean , Context
+    Boolean, Context
 
 ABSTRACT_VARIABLES
     clients
@@ -21,14 +21,14 @@ OPERATIONS
     add_client ( cc ) =
         PRE cc : CLIENT
         THEN clients := clients \/ { cc }
-    END ;
+    END;
 
     remove_client ( cc ) =
         PRE cc : CLIENT
         THEN clients := clients - { cc }
-    END ;
+    END;
 
-    qq <-- query_client ( cc ) =
+    qq <-- query_client( cc ) =
         PRE cc : CLIENT
         THEN
             IF cc : clients
@@ -38,3 +38,4 @@ OPERATIONS
     END
 
 END
+

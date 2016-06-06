@@ -1,80 +1,99 @@
-﻿/* Rent
- * Author: Rafael Queiroz
- * Creation date: 30/05/16
- */
-MACHINE
+﻿MACHINE
     Rent
 
-    INCLUDES          Penalty
+INCLUDES
+    ClientManager , Bike
 
-    USES              ClientManager , Bike
+PROMOTES
+    add_client , query_client , add_bike , query_bike
 
-    SEES              Boolean , Type , Time , Price , Damage , DamageCTX , ClientCTX , BikeCTX , TypeCTX
+SEES
+    Boolean , Context , Type , Time , Price
 
-    ABSTRACT_VARIABLES rents , return_date
+ABSTRACT_VARIABLES
+    rents , return_date
 
-    INVARIANT         rents : clients >+> bikes & return_date : ran ( rents ) --> NAT1
+INVARIANT
+    rents : clients >+> bikes & return_date : ran ( rents ) --> 1 .. 100
 
-    INITIALISATION    rents , return_date := {} , {}
+INITIALISATION
+    rents , return_date := {} , {}
 
-    OPERATIONS
+OPERATIONS
 
-    rr <-- rent ( cc , bb , rd ) =
-      PRE bb : BIKES_SET & cc : CLIENTS_SET & rd : NAT1 & rd > time
-      THEN
-        IF bb : bikes & cc : clients & cc /: dom ( rents ) & bb /: ran ( rents ) & penalty ( cc ) = 0
-        THEN rents ( cc ) := bb || return_date ( bb ) := rd || rr := true
-        ELSE rr := false
-        END
-      END ;
-
-    rr , rp <-- return ( cc ) =
-      PRE cc : CLIENTS_SET
-      THEN
-        IF cc : dom ( rents )
+    rr <-- remove_non_renter_client ( cc ) =
+        PRE cc : CLIENT
         THEN
-            IF return_date ( rents ( cc ) ) < time
-            THEN
-                rents := { cc } <<| rents ||
-                return_date := {} <<| return_date ||
-                rp <-- apply_penalty ( cc , damage_price ( damages ( rents ( cc ) ) ) , ( time - return_date ( rents ( cc ) ) * delay_price (                     types ( rents ( cc ) ) ) ) ) ||
-                rr := true
-            ELSE
-                rents := { cc } <<| rents ||
-                return_date := { rents ( cc ) } <<| return_date ||
-                rp <-- apply_penalty ( cc , damage_price ( damages ( rents ( cc ) ) ) , 0 ) ||
-                rr := true
+            IF cc : clients & cc /: dom ( rents )
+                THEN remove_client ( cc ) || rr := true
+            ELSE rr := false
+        END
+    END ;
+
+    rr <-- remove_non_rented_bike ( vv ) =
+        PRE vv : BIKE
+        THEN
+            IF vv : bikes & vv /: ran ( rents )
+                THEN rr <-- remove_bike ( vv )
+            ELSE rr := false
+        END
+    END ;
+
+
+    rr <-- rent ( cc , vv , rd ) =
+        PRE vv : BIKE & cc : CLIENT & rd : NAT1 & rd > time & rd <= 100
+        THEN
+            IF vv : bikes & cc : clients & cc /: dom ( rents ) & vv /: ran ( rents )
+                THEN rents ( cc ) := vv || return_date ( vv ) := rd || rr := true
+            ELSE rr := false
             END
-        ELSE rr := false ||
-            rp := false
-        END
-      END ;
+    END ;
 
-    qq <-- query_rents ( cc , bb ) =
-      PRE cc : CLIENTS_SET & bb : BIKES_SET
-      THEN
-        IF cc : dom ( rents ) & bb : ran ( rents ) & rents ( cc ) = bb
-        THEN qq := true
-        ELSE qq := false
-        END
-      END ;
+    rr <-- return ( cc ) =
+        PRE cc : CLIENT
+        THEN
+            IF cc : dom ( rents )
+                THEN
+                    IF return_date ( rents ( cc ) ) < time
+                    THEN
+                        rents := { cc } <<| rents ||
+                        return_date := { rents ( cc ) } <<| return_date ||
+                        rr := true
+                    ELSE
+                        rents := { cc } <<| rents ||
+                        return_date := { rents ( cc ) } <<| return_date ||
+                        rr := true
+                    END
+            ELSE
+                rr := false
+            END
+    END ;
 
-    qq <-- query_rented ( bb ) =
-      PRE bb : BIKES_SET
-      THEN
-        IF bb : ran ( rents )
-        THEN qq := true
-        ELSE qq := false
+    qq <-- query_rents ( cc , vv ) =
+        PRE cc : CLIENT & vv : BIKE
+        THEN
+            IF cc : dom ( rents ) & vv : ran ( rents ) & rents ( cc ) = vv
+            THEN qq := true
+            ELSE qq := false
         END
-      END ;
+    END ;
+
+    qq <-- query_rented ( vv ) =
+        PRE vv : BIKE
+        THEN
+            IF vv : ran ( rents )
+            THEN qq := true
+            ELSE qq := false
+        END
+    END ;
 
     qq <-- query_renter ( cc ) =
-      PRE cc : CLIENTS_SET
-      THEN
-        IF cc : dom ( rents )
-        THEN qq := true
-        ELSE qq := false
+        PRE cc : CLIENT
+        THEN
+            IF cc : dom ( rents )
+            THEN qq := true
+            ELSE qq := false
         END
-      END
+    END
 
 END

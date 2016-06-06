@@ -1,10 +1,10 @@
 <Machine name='ClientManager' type='abstraction'>
 <Sees>
 <Referenced_Machine>
-<Name>ClientCTX</Name>
+<Name>Boolean</Name>
 </Referenced_Machine>
 <Referenced_Machine>
-<Name>Boolean</Name>
+<Name>Context</Name>
 </Referenced_Machine>
 </Sees>
 <Sets>
@@ -13,18 +13,18 @@
 </Set>
 </Sets>
 <Abstract_Variables>
-<Id value='clients' typref='2177902086'/>
+<Id value='clients' typref='3603043417'/>
 </Abstract_Variables>
 <Invariant>
 <Exp_Comparison op='&lt;:'>
-<Id value='clients' typref='2177902086'/>
-<Id value='CLIENTS_SET' typref='2177902086'/>
+<Id value='clients' typref='3603043417'/>
+<Id value='CLIENT' typref='3603043417'/>
 </Exp_Comparison>
 </Invariant>
 <Initialisation>
 <Assignement_Sub>
 <Variables>
-<Id value='clients' typref='2177902086'/>
+<Id value='clients' typref='3603043417'/>
 </Variables>
 <Values>
 <EmptySet typref='3817003670'/>
@@ -34,24 +34,24 @@
 <Operations>
 <Operation name='add_client'>
 <Input_Parameters>
-<Id value='cc' typref='1764431549'/>
+<Id value='cc' typref='2701647786'/>
 </Input_Parameters>
 <Precondition>
 <Exp_Comparison op=':'>
-<Id value='cc' typref='1764431549'/>
-<Id value='CLIENTS_SET' typref='2177902086'/>
+<Id value='cc' typref='2701647786'/>
+<Id value='CLIENT' typref='3603043417'/>
 </Exp_Comparison>
 </Precondition>
 <Body>
 <Assignement_Sub>
 <Variables>
-<Id value='clients' typref='2177902086'/>
+<Id value='clients' typref='3603043417'/>
 </Variables>
 <Values>
-<Binary_Exp op='\/' typref='2177902086'>
-<Id value='clients' typref='2177902086'/>
-<Nary_Exp op='{' typref='2177902086'>
-<Id value='cc' typref='1764431549'/>
+<Binary_Exp op='\/' typref='3603043417'>
+<Id value='clients' typref='3603043417'/>
+<Nary_Exp op='{' typref='3603043417'>
+<Id value='cc' typref='2701647786'/>
 </Nary_Exp>
 </Binary_Exp>
 </Values>
@@ -60,24 +60,24 @@
 </Operation>
 <Operation name='remove_client'>
 <Input_Parameters>
-<Id value='cc' typref='1764431549'/>
+<Id value='cc' typref='2701647786'/>
 </Input_Parameters>
 <Precondition>
 <Exp_Comparison op=':'>
-<Id value='cc' typref='1764431549'/>
-<Id value='CLIENTS_SET' typref='2177902086'/>
+<Id value='cc' typref='2701647786'/>
+<Id value='CLIENT' typref='3603043417'/>
 </Exp_Comparison>
 </Precondition>
 <Body>
 <Assignement_Sub>
 <Variables>
-<Id value='clients' typref='2177902086'/>
+<Id value='clients' typref='3603043417'/>
 </Variables>
 <Values>
-<Binary_Exp op='-' typref='2177902086'>
-<Id value='clients' typref='2177902086'/>
-<Nary_Exp op='{' typref='2177902086'>
-<Id value='cc' typref='1764431549'/>
+<Binary_Exp op='-' typref='3603043417'>
+<Id value='clients' typref='3603043417'/>
+<Nary_Exp op='{' typref='3603043417'>
+<Id value='cc' typref='2701647786'/>
 </Nary_Exp>
 </Binary_Exp>
 </Values>
@@ -86,42 +86,42 @@
 </Operation>
 <Operation name='query_client'>
 <Output_Parameters>
-<Id value='qq' typref='1806513362'/>
+<Id value='qq' typref='1349572928'/>
 </Output_Parameters>
 <Input_Parameters>
-<Id value='cc' typref='1764431549'/>
+<Id value='cc' typref='2701647786'/>
 </Input_Parameters>
 <Precondition>
 <Exp_Comparison op=':'>
-<Id value='cc' typref='1764431549'/>
-<Id value='CLIENTS_SET' typref='2177902086'/>
+<Id value='cc' typref='2701647786'/>
+<Id value='CLIENT' typref='3603043417'/>
 </Exp_Comparison>
 </Precondition>
 <Body>
 <If_Sub elseif='no'>
 <Condition>
 <Exp_Comparison op=':'>
-<Id value='cc' typref='1764431549'/>
-<Id value='clients' typref='2177902086'/>
+<Id value='cc' typref='2701647786'/>
+<Id value='clients' typref='3603043417'/>
 </Exp_Comparison>
 </Condition>
 <Then>
 <Assignement_Sub>
 <Variables>
-<Id value='qq' typref='1806513362'/>
+<Id value='qq' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='true' typref='1806513362'/>
+<Id value='true' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
 </Then>
 <Else>
 <Assignement_Sub>
 <Variables>
-<Id value='qq' typref='1806513362'/>
+<Id value='qq' typref='1349572928'/>
 </Variables>
 <Values>
-<Id value='false' typref='1806513362'/>
+<Id value='false' typref='1349572928'/>
 </Values>
 </Assignement_Sub>
 </Else>
@@ -135,9 +135,9 @@
 <Id value='NAME'/>
 </Unary_Exp>
 </Type>
-<Type id='2177902086'>
+<Type id='3603043417'>
 <Unary_Exp op='POW'>
-<Id value='CLIENTS_SET'/>
+<Id value='INTEGER'/>
 </Unary_Exp>
 </Type>
 <Type id='3817003670'>
@@ -145,11 +145,11 @@
 <Generic_Type/>
 </Unary_Exp>
 </Type>
-<Type id='1764431549'>
-<Id value='CLIENTS_SET'/>
+<Type id='2701647786'>
+<Id value='INTEGER'/>
 </Type>
-<Type id='1806513362'>
-<Id value='BOOL_RESPONSE'/>
+<Type id='1349572928'>
+<Id value='BOOLEAN'/>
 </Type>
 </TypeInfos>
 

@@ -1,9 +1,9 @@
-﻿
+
 MACHINE
     Terminal
 
 SEES
-    Boolean , Context , Type
+    Boolean, Context, Type
 
 USES
     Bike
@@ -26,7 +26,7 @@ OPERATIONS
                 THEN bikes_in_terminal := bikes_in_terminal \/ { bb } || rr := true
             ELSE rr := false
         END
-    END ;
+    END;
 
     rr <-- remove_bike_to_terminal ( bb ) =
         PRE bb : BIKE
@@ -35,7 +35,7 @@ OPERATIONS
                 THEN bikes_in_terminal := bikes_in_terminal - { bb } || rr := true
             ELSE rr := false
         END
-    END ;
+    END;
 
     qq <-- query_bike_to_terminal ( bb ) =
         PRE bb : BIKE

@@ -1,8 +1,8 @@
-﻿MACHINE
+MACHINE
     Bike
 
 SEES
-    Boolean , Context , Type
+    Boolean, Context, Type
 
 ABSTRACT_VARIABLES
     bikes
@@ -22,7 +22,7 @@ OPERATIONS
                 THEN bikes := bikes \/ { bb } || rr := true
             ELSE rr := false
         END
-    END ;
+    END;
 
     rr <-- remove_bike ( bb ) =
         PRE bb : BIKE
@@ -31,7 +31,7 @@ OPERATIONS
                 THEN bikes := bikes - { bb } || rr := true
             ELSE rr := false
         END
-    END ;
+    END;
 
     qq <-- query_bike ( bb ) =
         PRE bb : BIKE

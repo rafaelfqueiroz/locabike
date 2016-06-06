@@ -1,46 +1,29 @@
 <Machine name='Price' type='abstraction'>
 <Sees>
 <Referenced_Machine>
-<Name>TypeCTX</Name>
-</Referenced_Machine>
-<Referenced_Machine>
-<Name>DamageCTX</Name>
-</Referenced_Machine>
-<Referenced_Machine>
-<Name>Damage</Name>
-</Referenced_Machine>
-<Referenced_Machine>
 <Name>Boolean</Name>
 </Referenced_Machine>
 <Referenced_Machine>
-<Name>BikeCTX</Name>
+<Name>Context</Name>
 </Referenced_Machine>
 </Sees>
 <Abstract_Variables>
-<Id value='damage_price' typref='2317257241'/>
-<Id value='price' typref='2418527566'/>
-<Id value='delay_price' typref='2418527566'/>
+<Id value='price' typref='2182059124'/>
+<Id value='hour_price' typref='2182059124'/>
 </Abstract_Variables>
 <Invariant>
 <Nary_Pred op='&amp;'>
 <Exp_Comparison op=':'>
-<Id value='damage_price' typref='2317257241'/>
-<Binary_Exp op='+-&gt;' typref='3789497642'>
-<Id value='DAMAGES_SET' typref='3886293922'/>
-<Id value='NAT' typref='3603043417'/>
-</Binary_Exp>
-</Exp_Comparison>
-<Exp_Comparison op=':'>
-<Id value='price' typref='2418527566'/>
-<Binary_Exp op='+-&gt;' typref='2998802613'>
-<Id value='TYPES_SET' typref='4236453719'/>
+<Id value='price' typref='2182059124'/>
+<Binary_Exp op='+-&gt;' typref='2711632101'>
+<Id value='TYPE' typref='3132045039'/>
 <Id value='NAT1' typref='3603043417'/>
 </Binary_Exp>
 </Exp_Comparison>
 <Exp_Comparison op=':'>
-<Id value='delay_price' typref='2418527566'/>
-<Binary_Exp op='+-&gt;' typref='2998802613'>
-<Id value='TYPES_SET' typref='4236453719'/>
+<Id value='hour_price' typref='2182059124'/>
+<Binary_Exp op='+-&gt;' typref='2711632101'>
+<Id value='TYPE' typref='3132045039'/>
 <Id value='NAT1' typref='3603043417'/>
 </Binary_Exp>
 </Exp_Comparison>
@@ -49,165 +32,27 @@
 <Initialisation>
 <Assignement_Sub>
 <Variables>
-<Id value='damage_price' typref='2317257241'/>
-<Id value='price' typref='2418527566'/>
-<Id value='delay_price' typref='2418527566'/>
+<Id value='price' typref='2182059124'/>
+<Id value='hour_price' typref='2182059124'/>
 </Variables>
 <Values>
-<Nary_Exp op='{' typref='2317257241'>
-<Binary_Exp op='|-&gt;' typref='3666394858'>
-<Id value='no_damage' typref='1945869857'/>
-<Integer_Literal value='0' typref='2701647786'/>
-</Binary_Exp>
-</Nary_Exp>
 <EmptySet typref='3817003670'/>
 <EmptySet typref='3817003670'/>
 </Values>
 </Assignement_Sub>
 </Initialisation>
 <Operations>
-<Operation name='set_damage_price'>
-<Input_Parameters>
-<Id value='dd' typref='1945869857'/>
-<Id value='pp' typref='2701647786'/>
-</Input_Parameters>
-<Precondition>
-<Nary_Pred op='&amp;'>
-<Exp_Comparison op=':'>
-<Id value='dd' typref='1945869857'/>
-<Id value='DAMAGES_SET' typref='3886293922'/>
-</Exp_Comparison>
-<Exp_Comparison op=':'>
-<Id value='pp' typref='2701647786'/>
-<Id value='NAT' typref='3603043417'/>
-</Exp_Comparison>
-</Nary_Pred>
-</Precondition>
-<Body>
-<Assignement_Sub>
-<Variables>
-<Binary_Exp op='(' typref='2701647786'>
-<Id value='damage_price' typref='2317257241'/>
-<Id value='dd' typref='1945869857'/>
-</Binary_Exp>
-</Variables>
-<Values>
-<Id value='pp' typref='2701647786'/>
-</Values>
-</Assignement_Sub>
-</Body>
-</Operation>
-<Operation name='query_damage_penalty'>
-<Output_Parameters>
-<Id value='qq' typref='2701647786'/>
-</Output_Parameters>
-<Input_Parameters>
-<Id value='vv' typref='928822259'/>
-</Input_Parameters>
-<Precondition>
-<Exp_Comparison op=':'>
-<Id value='vv' typref='928822259'/>
-<Id value='BIKES_SET' typref='2466226896'/>
-</Exp_Comparison>
-</Precondition>
-<Body>
-<Assignement_Sub>
-<Variables>
-<Id value='qq' typref='2701647786'/>
-</Variables>
-<Values>
-<Binary_Exp op='(' typref='2701647786'>
-<Id value='damage_price' typref='2317257241'/>
-<Binary_Exp op='(' typref='1945869857'>
-<Id value='damages' typref='1003861904'/>
-<Id value='vv' typref='928822259'/>
-</Binary_Exp>
-</Binary_Exp>
-</Values>
-</Assignement_Sub>
-</Body>
-</Operation>
-<Operation name='query_damage_price'>
-<Output_Parameters>
-<Id value='qq' typref='2701647786'/>
-<Id value='rr' typref='1806513362'/>
-</Output_Parameters>
-<Input_Parameters>
-<Id value='dd' typref='1945869857'/>
-</Input_Parameters>
-<Precondition>
-<Exp_Comparison op=':'>
-<Id value='dd' typref='1945869857'/>
-<Id value='DAMAGES_SET' typref='3886293922'/>
-</Exp_Comparison>
-</Precondition>
-<Body>
-<If_Sub elseif='no'>
-<Condition>
-<Exp_Comparison op=':'>
-<Id value='dd' typref='1945869857'/>
-<Unary_Exp op='dom' typref='3886293922'>
-<Id value='damage_price' typref='2317257241'/>
-</Unary_Exp>
-</Exp_Comparison>
-</Condition>
-<Then>
-<Nary_Sub op='||'>
-<Assignement_Sub>
-<Variables>
-<Id value='qq' typref='2701647786'/>
-</Variables>
-<Values>
-<Binary_Exp op='(' typref='2701647786'>
-<Id value='damage_price' typref='2317257241'/>
-<Id value='dd' typref='1945869857'/>
-</Binary_Exp>
-</Values>
-</Assignement_Sub>
-<Assignement_Sub>
-<Variables>
-<Id value='rr' typref='1806513362'/>
-</Variables>
-<Values>
-<Id value='true' typref='1806513362'/>
-</Values>
-</Assignement_Sub>
-</Nary_Sub>
-</Then>
-<Else>
-<Nary_Sub op='||'>
-<Becomes_In>
-<Variables>
-<Id value='qq' typref='2701647786'/>
-</Variables>
-<Value>
-<Id value='NAT' typref='3603043417'/>
-</Value>
-</Becomes_In>
-<Assignement_Sub>
-<Variables>
-<Id value='rr' typref='1806513362'/>
-</Variables>
-<Values>
-<Id value='false' typref='1806513362'/>
-</Values>
-</Assignement_Sub>
-</Nary_Sub>
-</Else>
-</If_Sub>
-</Body>
-</Operation>
 <Operation name='set_price'>
 <Input_Parameters>
-<Id value='cc' typref='59484332'/>
+<Id value='cc' typref='1690934634'/>
 <Id value='pp' typref='2701647786'/>
 <Id value='dly' typref='2701647786'/>
 </Input_Parameters>
 <Precondition>
 <Nary_Pred op='&amp;'>
 <Exp_Comparison op=':'>
-<Id value='cc' typref='59484332'/>
-<Id value='TYPES_SET' typref='4236453719'/>
+<Id value='cc' typref='1690934634'/>
+<Id value='TYPE' typref='3132045039'/>
 </Exp_Comparison>
 <Exp_Comparison op=':'>
 <Id value='pp' typref='2701647786'/>
@@ -224,8 +69,8 @@
 <Assignement_Sub>
 <Variables>
 <Binary_Exp op='(' typref='2701647786'>
-<Id value='price' typref='2418527566'/>
-<Id value='cc' typref='59484332'/>
+<Id value='price' typref='2182059124'/>
+<Id value='cc' typref='1690934634'/>
 </Binary_Exp>
 </Variables>
 <Values>
@@ -235,8 +80,8 @@
 <Assignement_Sub>
 <Variables>
 <Binary_Exp op='(' typref='2701647786'>
-<Id value='delay_price' typref='2418527566'/>
-<Id value='cc' typref='59484332'/>
+<Id value='hour_price' typref='2182059124'/>
+<Id value='cc' typref='1690934634'/>
 </Binary_Exp>
 </Variables>
 <Values>
@@ -251,12 +96,12 @@
 <Id value='pp' typref='2701647786'/>
 </Output_Parameters>
 <Input_Parameters>
-<Id value='cc' typref='59484332'/>
+<Id value='cc' typref='1690934634'/>
 </Input_Parameters>
 <Precondition>
 <Exp_Comparison op=':'>
-<Id value='cc' typref='59484332'/>
-<Id value='TYPES_SET' typref='4236453719'/>
+<Id value='cc' typref='1690934634'/>
+<Id value='TYPE' typref='3132045039'/>
 </Exp_Comparison>
 </Precondition>
 <Body>
@@ -266,8 +111,8 @@
 </Variables>
 <Values>
 <Binary_Exp op='(' typref='2701647786'>
-<Id value='price' typref='2418527566'/>
-<Id value='cc' typref='59484332'/>
+<Id value='price' typref='2182059124'/>
+<Id value='cc' typref='1690934634'/>
 </Binary_Exp>
 </Values>
 </Assignement_Sub>
@@ -275,35 +120,27 @@
 </Operation>
 </Operations>
 <TypeInfos>
-<Type id='2317257241'>
+<Type id='2182059124'>
 <Unary_Exp op='POW'>
 <Binary_Exp op='*'>
-<Id value='DAMAGES_SET'/>
+<Id value='TYPE'/>
 <Id value='INTEGER'/>
 </Binary_Exp>
 </Unary_Exp>
 </Type>
-<Type id='2418527566'>
-<Unary_Exp op='POW'>
-<Binary_Exp op='*'>
-<Id value='TYPES_SET'/>
-<Id value='INTEGER'/>
-</Binary_Exp>
-</Unary_Exp>
-</Type>
-<Type id='3789497642'>
+<Type id='2711632101'>
 <Unary_Exp op='POW'>
 <Unary_Exp op='POW'>
 <Binary_Exp op='*'>
-<Id value='DAMAGES_SET'/>
+<Id value='TYPE'/>
 <Id value='INTEGER'/>
 </Binary_Exp>
 </Unary_Exp>
 </Unary_Exp>
 </Type>
-<Type id='3886293922'>
+<Type id='3132045039'>
 <Unary_Exp op='POW'>
-<Id value='DAMAGES_SET'/>
+<Id value='TYPE'/>
 </Unary_Exp>
 </Type>
 <Type id='3603043417'>
@@ -311,59 +148,16 @@
 <Id value='INTEGER'/>
 </Unary_Exp>
 </Type>
-<Type id='2998802613'>
-<Unary_Exp op='POW'>
-<Unary_Exp op='POW'>
-<Binary_Exp op='*'>
-<Id value='TYPES_SET'/>
-<Id value='INTEGER'/>
-</Binary_Exp>
-</Unary_Exp>
-</Unary_Exp>
-</Type>
-<Type id='4236453719'>
-<Unary_Exp op='POW'>
-<Id value='TYPES_SET'/>
-</Unary_Exp>
-</Type>
-<Type id='3666394858'>
-<Binary_Exp op='*'>
-<Id value='DAMAGES_SET'/>
-<Id value='INTEGER'/>
-</Binary_Exp>
-</Type>
-<Type id='1945869857'>
-<Id value='DAMAGES_SET'/>
-</Type>
-<Type id='2701647786'>
-<Id value='INTEGER'/>
-</Type>
 <Type id='3817003670'>
 <Unary_Exp op='POW'>
 <Generic_Type/>
 </Unary_Exp>
 </Type>
-<Type id='928822259'>
-<Id value='BIKES_SET'/>
+<Type id='1690934634'>
+<Id value='TYPE'/>
 </Type>
-<Type id='2466226896'>
-<Unary_Exp op='POW'>
-<Id value='BIKES_SET'/>
-</Unary_Exp>
-</Type>
-<Type id='1003861904'>
-<Unary_Exp op='POW'>
-<Binary_Exp op='*'>
-<Id value='BIKES_SET'/>
-<Id value='DAMAGES_SET'/>
-</Binary_Exp>
-</Unary_Exp>
-</Type>
-<Type id='1806513362'>
-<Id value='BOOL_RESPONSE'/>
-</Type>
-<Type id='59484332'>
-<Id value='TYPES_SET'/>
+<Type id='2701647786'>
+<Id value='INTEGER'/>
 </Type>
 </TypeInfos>
 

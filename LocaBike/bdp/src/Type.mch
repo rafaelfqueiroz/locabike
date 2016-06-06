@@ -1,28 +1,31 @@
-﻿/* Type
- * Author: Rafael Queiroz
- * Creation date: 25/05/16
- */
-MACHINE
+﻿MACHINE
     Type
 
-    SEES Boolean , BikeCTX , TypeCTX , Price
-    ABSTRACT_VARIABLES types
-    INVARIANT types : BIKES_SET +-> TYPES_SET
-    INITIALISATION types := {}
+SEES
+    Boolean , Context , Price
 
-    OPERATIONS
+ABSTRACT_VARIABLES
+    types
 
-        set_category ( bb , tt ) =
-        PRE bb : BIKES_SET & tt : TYPES_SET & tt : dom ( price )
+INVARIANT
+    types : BIKE +-> TYPE
+
+INITIALISATION
+    types := {}
+
+OPERATIONS
+
+    set_type ( bb , tt ) =
+        PRE bb : BIKE & tt : TYPE & tt : dom ( price )
         THEN types ( bb ) := tt
-        END ;
+    END ;
 
-        qq <-- query_type ( bb ) =
-        PRE bb : BIKES_SET
+    qq <-- query_type ( bb ) =
+        PRE bb : BIKE
         THEN
             IF bb : dom ( types )
-            THEN qq := types ( bb )
-            ELSE qq :: TYPES_SET
-            END
+                THEN qq := types ( bb )
+            ELSE qq :: TYPE
         END
     END
+END

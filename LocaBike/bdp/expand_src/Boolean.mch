@@ -1,9 +1,7 @@
-﻿/* Boolean
- * Author: 
- * Creation date: 25/05/16
- */
-MACHINE
+﻿MACHINE
     Boolean
 
-    SETS BOOL_RESPONSE = { true , false }
+SETS
+    BOOLEAN = { true , false }
+
 END

@@ -1,47 +1,49 @@
-﻿/* Terminal
- * Author: 
- * Creation date: 30/05/16
- */
+﻿
 MACHINE
     Terminal
 
-    SEES          Boolean , BikeCTX , Type
+SEES
+    Boolean , Context , Type
 
-    USES          Bike
+USES
+    Bike
 
-    ABSTRACT_VARIABLES terminal_bikes
+ABSTRACT_VARIABLES
+    bikes_in_terminal
 
-    INVARIANT         terminal_bikes <: bikes
+INVARIANT
+    bikes_in_terminal <: bikes
 
-    INITIALISATION    terminal_bikes := {}
+INITIALISATION
+    bikes_in_terminal := {}
 
-    OPERATIONS
+OPERATIONS
 
     rr <-- add_bike_to_terminal ( bb ) =
-      PRE bb : BIKES_SET
-      THEN
-        IF bb /: terminal_bikes
-        THEN terminal_bikes := terminal_bikes \/ { bb } || rr := true
-        ELSE rr := false
+        PRE bb : BIKE
+        THEN
+            IF bb /: bikes_in_terminal
+                THEN bikes_in_terminal := bikes_in_terminal \/ { bb } || rr := true
+            ELSE rr := false
         END
-      END ;
+    END ;
 
     rr <-- remove_bike_to_terminal ( bb ) =
-      PRE bb : BIKES_SET
-      THEN
-        IF bb : terminal_bikes
-        THEN terminal_bikes := terminal_bikes - { bb } || rr := true
-        ELSE rr := false
+        PRE bb : BIKE
+        THEN
+            IF bb : bikes_in_terminal
+                THEN bikes_in_terminal := bikes_in_terminal - { bb } || rr := true
+            ELSE rr := false
         END
-      END ;
+    END ;
 
     qq <-- query_bike_to_terminal ( bb ) =
-      PRE bb : BIKES_SET
-      THEN
-        IF bb : terminal_bikes
-        THEN qq := true
-        ELSE qq := false
+        PRE bb : BIKE
+        THEN
+            IF bb : bikes_in_terminal
+                THEN qq := true
+            ELSE qq := false
         END
-      END
+    END
 
 END
