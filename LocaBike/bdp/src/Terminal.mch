@@ -22,7 +22,7 @@ OPERATIONS
     rr <-- add_bike_to_terminal ( tt , bb ) =
         PRE tt : TERMINAL & bb : BIKE
         THEN
-            IF bb /: dom ( bikes_in_terminal )
+            IF bb : bikes & bb /: dom ( bikes_in_terminal )
                 THEN bikes_in_terminal ( bb ) := tt || rr := true
             ELSE rr := false
         END

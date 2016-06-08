@@ -2,10 +2,10 @@ MACHINE
     Rent
 
 USES
-    Bike
+    Type, Bike, ClientManager
 
 INCLUDES
-    Boolean, Context, ClientManager, Time, Type
+    Boolean, Context, Time
 
 VARIABLES
     rents, return_date

@@ -1,0 +1,38 @@
+/* Bike_i
+ * Author: 
+ * Creation date: 6/8/16
+ */
+
+IMPLEMENTATION Bike_i
+REFINES Bike
+
+SEES
+    Boolean, Context, Type
+
+
+OPERATIONS
+    rr <-- add_bike ( bb ) =
+       BEGIN
+            IF bb /: bikes
+                THEN bikes := bikes \/ { bb } || rr := true
+            ELSE rr := false
+    END;
+
+
+    rr <-- remove_bike ( bb ) =
+        BEGIN
+            IF bb : bikes
+                THEN bikes := bikes - { bb } || rr := true
+            ELSE rr := false
+    END;
+
+
+    qq <-- query_bike ( bb ) =
+        BEGIN
+            IF bb : bikes
+                THEN qq := true
+            ELSE qq := false
+        END
+    END
+
+ END
