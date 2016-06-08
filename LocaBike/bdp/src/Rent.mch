@@ -1,14 +1,11 @@
 ﻿MACHINE
     Rent
 
+USES
+    Bike
+
 INCLUDES
-    ClientManager , Bike
-
-PROMOTES
-    add_client , query_client , add_bike , query_bike
-
-SEES
-    Boolean , Context , Type , Time , Price
+    Boolean , Context , ClientManager , Time , Type
 
 ABSTRACT_VARIABLES
     rents , return_date
@@ -21,30 +18,11 @@ INITIALISATION
 
 OPERATIONS
 
-    rr <-- remove_non_renter_client ( cc ) =
-        PRE cc : CLIENT
+    rr <-- rent ( cc , bb ) =
+        PRE bb : BIKE & cc : CLIENT
         THEN
-            IF cc : clients & cc /: dom ( rents )
-                THEN remove_client ( cc ) || rr := true
-            ELSE rr := false
-        END
-    END ;
-
-    rr <-- remove_non_rented_bike ( vv ) =
-        PRE vv : BIKE
-        THEN
-            IF vv : bikes & vv /: ran ( rents )
-                THEN rr <-- remove_bike ( vv )
-            ELSE rr := false
-        END
-    END ;
-
-
-    rr <-- rent ( cc , vv , rd ) =
-        PRE vv : BIKE & cc : CLIENT & rd : NAT1 & rd > time & rd <= 100
-        THEN
-            IF vv : bikes & cc : clients & cc /: dom ( rents ) & vv /: ran ( rents )
-                THEN rents ( cc ) := vv || return_date ( vv ) := rd || rr := true
+            IF bb : bikes & cc : clients & cc /: dom ( rents ) & bb /: ran ( rents )
+                THEN rents ( cc ) := bb || rr := true
             ELSE rr := false
             END
     END ;
@@ -69,19 +47,19 @@ OPERATIONS
             END
     END ;
 
-    qq <-- query_rents ( cc , vv ) =
-        PRE cc : CLIENT & vv : BIKE
+    qq <-- query_rents ( cc , bb ) =
+        PRE cc : CLIENT & bb : BIKE
         THEN
-            IF cc : dom ( rents ) & vv : ran ( rents ) & rents ( cc ) = vv
+            IF cc : dom ( rents ) & bb : ran ( rents ) & rents ( cc ) = bb
             THEN qq := true
             ELSE qq := false
         END
     END ;
 
-    qq <-- query_rented ( vv ) =
-        PRE vv : BIKE
+    qq <-- query_rented ( bb ) =
+        PRE bb : BIKE
         THEN
-            IF vv : ran ( rents )
+            IF bb : ran ( rents )
             THEN qq := true
             ELSE qq := false
         END

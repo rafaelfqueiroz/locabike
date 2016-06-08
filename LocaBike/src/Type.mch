@@ -2,7 +2,10 @@ MACHINE
     Type
 
 SEES
-    Boolean, Context, Price
+    Boolean, Context
+
+INCLUDES
+    Price
 
 ABSTRACT_VARIABLES
     types
