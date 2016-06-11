@@ -1,0 +1,47 @@
+IMPLEMENTATION ClientManager_i
+REFINES ClientManager
+
+SEES
+    Boolean, Context
+
+CONCRETE_VARIABLES  
+    clients_i = CLIENT
+
+INVARIANT 
+    clients_i : CLIENT --> BOOL &
+    clients = CLIENT /\ ( cliente_i ~ ) [ { TRUE } ]
+
+INITIALIZATION
+    clients_i := CLIENT * { FALSE } ;
+
+OPERATIONS
+    rr <-- add_client ( cc ) =
+        BEGIN
+        VAR client := clients_i ( cc );
+        IF client = FALSE
+        THEN 
+            client := TRUE;
+            rr := TRUE
+        ELSE 
+            rr := FALSE
+    END;
+
+
+    rr <-- remove_client ( cc ) =
+        BEGIN
+        VAR client IN client := clients_i ( cc );
+            IF client := TRUE
+            THEN
+                client := FALSE;
+                rr := TRUE
+            ELSE rr := FALSE
+    END;
+
+
+    qq <-- query_client ( cc ) =
+        BEGIN
+            qq := clients_i ( cc )
+        END
+    END
+
+ END
