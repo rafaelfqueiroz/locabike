@@ -1,9 +1,6 @@
 MACHINE
     ClientManager
 
-SETS
-    NAME
-
 SEES
     Context
 
@@ -18,14 +15,22 @@ INITIALISATION
 
 OPERATIONS
 
-    add_client ( cc ) =
+    rr <-- add_client ( cc ) =
         PRE cc : CLIENT
-        THEN clients := clients \/ { cc }
+        THEN
+            IF cc /: clients
+                THEN clients := clients \/ { cc } || rr := TRUE
+            ELSE rr := FALSE
+        END
     END;
 
-    remove_client ( cc ) =
+    rr <-- remove_client ( cc ) =
         PRE cc : CLIENT
-        THEN clients := clients - { cc }
+        THEN
+            IF cc : clients
+                THEN clients := clients - { cc } || rr := TRUE
+            ELSE rr := FALSE
+        END
     END;
 
     qq <-- query_client( cc ) =

@@ -2,11 +2,14 @@
 MACHINE
     System
 
+SEES 
+    Type
+    
 INCLUDES
-    Type, Bike, ClientManager, Rent, Central, Terminal
+     Bike, ClientManager, Rent, Central, Terminal
 
 PROMOTES
-    set_type, add_bike, add_client, add_terminal, add_bike_to_terminal, remove_bike_from_terminal
+    add_bike, add_client, add_terminal, add_bike_to_terminal, remove_bike_from_terminal
 
 OPERATIONS
 

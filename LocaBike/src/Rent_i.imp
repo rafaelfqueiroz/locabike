@@ -1,20 +1,17 @@
-/* Rent_i
- * Author: 
- * Creation date: 6/12/16
- */
+IMPLEMENTATION
+    Rent_i
 
-IMPLEMENTATION Rent_i
-REFINES Rent
+REFINES
+    Rent
 
 VARIABLES
     rents, return_date
 
-
 INITIALISATION
     rents, return_date := {}, {}
 
-
 OPERATIONS
+
     rr <-- rent (cc, bb) =
         PRE bb : BIKE & cc : CLIENT
         THEN
