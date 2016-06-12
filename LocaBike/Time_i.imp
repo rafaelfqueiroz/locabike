@@ -1,1 +1,31 @@
-Time_i.imp
+IMPLEMENTATION Time_i
+REFINES Time
+
+CONCRETE_VARIABLES  
+    time_i
+
+INVARIANT
+	time_i : NAT &
+ 	time = time_i
+
+
+ INITIALISATION
+ 	time_i := 0
+
+ OPERATIONS
+
+ 	pass_time ( tt ) =
+ 		IF Time_i < 100
+          THEN time_i := time_i + 1
+        END
+ 	END;
+
+ 	pass_hour =
+ 	BEGIN
+ 		time_i := time_i + 1;
+ 	END;
+
+    qq <-- query_time =
+    BEGIN
+    	qq := time_i
+    END;
