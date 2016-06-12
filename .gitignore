@@ -17,6 +17,9 @@
 *.poxml
 *.tse
 *.why
+*.prob
+*.pmm
+
 cpp/
 hia/
 .usedby*
@@ -25,3 +28,6 @@ hia/
 AtelierB
 aaaa2120
 .\#*
+
+bdp/
+lang/

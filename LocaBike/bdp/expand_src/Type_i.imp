@@ -15,7 +15,7 @@ INVARIANT
     types = type_i |>> { 0 }
 
 INITIALISATION
-    type_i := BIKE * { 0 } ;
+    type_i := BIKE * { 0 }
 
 OPERATIONS
 
@@ -24,18 +24,9 @@ OPERATIONS
             type_i ( bb ) := tt
         END ;
 
-    qq , rr <-- query_type ( bb ) =
+    qq <-- query_type ( bb ) =
         BEGIN
-            VAR type IN
-                type := type_i ( bb ) ;
-            IF type /= 0
-            THEN
-                qq := type_i ( bb ) ;
-                rr := TRUE
-            ELSE
-                qq := type_i ( bb ) ;
-                rr := FALSE
-            END
+            qq := type_i ( bb )
         END
-    END ;
+
 END

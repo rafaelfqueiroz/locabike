@@ -1,0 +1,19 @@
+/* System_i
+ * Author: 
+ * Creation date: 6/12/16
+ */
+
+IMPLEMENTATION System_i
+REFINES System
+
+OPERATIONS
+    rr <-- rent_from_any_terminal ( cc, bb ) =
+        PRE cc : CLIENT & bb : BIKE
+        THEN
+            IF bb : bikes & bb : dom ( bikes_in_terminal )
+                THEN rr <-- rent ( cc, bb )
+            ELSE rr := FALSE
+            END
+    END
+
+ END
