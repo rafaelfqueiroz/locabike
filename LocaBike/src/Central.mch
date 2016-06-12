@@ -1,45 +1,45 @@
 MACHINE
-	Central
+    Central
 
 SEES
-	Boolean, Context
+    Context
 
 ABSTRACT_VARIABLES
-	terminals
+    terminals
 
 INVARIANT
-	terminals <: TERMINAL
+    terminals <: TERMINAL
 
 INITIALISATION
-	terminals := {}
+    terminals := {}
 
 OPERATIONS
 
-	rr <-- add_terminal ( bb ) =
-		PRE bb : TERMINAL
-		THEN
-			IF bb /: terminals
-				THEN terminals := terminals \/ { bb } || rr := true
-			ELSE rr := false
-		END
-	END;
+    rr <-- add_terminal ( bb ) =
+        PRE bb : TERMINAL
+        THEN
+            IF bb /: terminals
+                THEN terminals := terminals \/ { bb } || rr := TRUE
+            ELSE rr := FALSE
+        END
+    END;
 
-	rr <-- remove_terminal ( bb ) =
-		PRE bb : TERMINAL
-		THEN
-			IF bb : terminals
-				THEN terminals := terminals - { bb } || rr := true
-			ELSE rr := false
-		END
-	END;
+    rr <-- remove_terminal ( bb ) =
+        PRE bb : TERMINAL
+        THEN
+            IF bb : terminals
+                THEN terminals := terminals - { bb } || rr := TRUE
+            ELSE rr := FALSE
+        END
+    END;
 
-	qq <-- query_terminal ( bb ) =
-		PRE bb : TERMINAL
-		THEN
-			IF bb : terminals
-				THEN qq := true
-			ELSE qq := false
-		END
-	END
+    qq <-- query_terminal ( bb ) =
+        PRE bb : TERMINAL
+        THEN
+            IF bb : terminals
+                THEN qq := TRUE
+            ELSE qq := FALSE
+        END
+    END
 
 END

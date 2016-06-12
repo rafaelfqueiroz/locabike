@@ -1,5 +1,5 @@
 /* Terminal_i
- * Author: 
+ * Author:
  * Creation date: 6/8/16
  */
 
@@ -10,12 +10,12 @@ IMOPORTS
 	Bike, Central
 
 SEES
-    Boolean, Context, Type
+    Context, Type
 
-CONCRETE_VARIABLES  
+CONCRETE_VARIABLES
     bikes_in_terminal = BIKE
 
-INVARIANT 
+INVARIANT
     bikes_in_terminal_i : bikes >-> terminals
     bikes_in_terminal_i = bikes_in_terminal
 
@@ -26,8 +26,8 @@ OPERATIONS
     rr <-- add_bike_to_terminal ( tt, bb ) =
         THEN
             IF bikes_i(bb) = TRUE & bb /: dom ( bikes_in_terminal )
-                THEN bikes_in_terminal ( bb ) := tt || rr := true
-            ELSE rr := false
+                THEN bikes_in_terminal ( bb ) := tt || rr := TRUE
+            ELSE rr := FALSE
         END
     END;
 
@@ -35,8 +35,8 @@ OPERATIONS
         PRE bb : BIKE
         THEN
             IF bb : dom ( bikes_in_terminal )
-                THEN bikes_in_terminal := { bb } <<| bikes_in_terminal || rr := true
-            ELSE rr := false
+                THEN bikes_in_terminal := { bb } <<| bikes_in_terminal || rr := TRUE
+            ELSE rr := FALSE
         END
     END
 

@@ -5,7 +5,7 @@ USES
     Type , Bike , ClientManager
 
 INCLUDES
-    Boolean , Context , Time
+    Context , Time
 
 ABSTRACT_VARIABLES
     rents , return_date
@@ -22,8 +22,8 @@ OPERATIONS
         PRE bb : BIKE & cc : CLIENT
         THEN
             IF bb : bikes & cc : clients & cc /: dom ( rents ) & bb /: ran ( rents )
-                THEN rents ( cc ) := bb || rr := true
-            ELSE rr := false
+                THEN rents ( cc ) := bb || rr := TRUE
+            ELSE rr := FALSE
             END
     END ;
 
@@ -36,14 +36,14 @@ OPERATIONS
                     THEN
                         rents := { cc } <<| rents ||
                         return_date := { rents ( cc ) } <<| return_date ||
-                        rr := true
+                        rr := TRUE
                     ELSE
                         rents := { cc } <<| rents ||
                         return_date := { rents ( cc ) } <<| return_date ||
-                        rr := true
+                        rr := TRUE
                     END
             ELSE
-                rr := false
+                rr := FALSE
             END
     END ;
 
@@ -51,8 +51,8 @@ OPERATIONS
         PRE cc : CLIENT & bb : BIKE
         THEN
             IF cc : dom ( rents ) & bb : ran ( rents ) & rents ( cc ) = bb
-            THEN qq := true
-            ELSE qq := false
+            THEN qq := TRUE
+            ELSE qq := FALSE
         END
     END ;
 
@@ -60,8 +60,8 @@ OPERATIONS
         PRE bb : BIKE
         THEN
             IF bb : ran ( rents )
-            THEN qq := true
-            ELSE qq := false
+            THEN qq := TRUE
+            ELSE qq := FALSE
         END
     END ;
 
@@ -69,8 +69,8 @@ OPERATIONS
         PRE cc : CLIENT
         THEN
             IF cc : dom ( rents )
-            THEN qq := true
-            ELSE qq := false
+            THEN qq := TRUE
+            ELSE qq := FALSE
         END
     END
 

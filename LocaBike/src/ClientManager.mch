@@ -5,7 +5,7 @@ SETS
     NAME
 
 SEES
-    Boolean, Context
+    Context
 
 ABSTRACT_VARIABLES
     clients
@@ -32,8 +32,8 @@ OPERATIONS
         PRE cc : CLIENT
         THEN
             IF cc : clients
-                THEN qq := true
-            ELSE qq := false
+                THEN qq := TRUE
+            ELSE qq := FALSE
         END
     END
 

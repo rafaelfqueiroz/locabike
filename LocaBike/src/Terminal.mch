@@ -3,7 +3,7 @@ MACHINE
     Terminal
 
 SEES
-    Boolean, Context, Type
+    Context, Type
 
 USES
     Bike, Central
@@ -23,8 +23,8 @@ OPERATIONS
         PRE tt : TERMINAL & bb : BIKE
         THEN
             IF bb : bikes & bb /: dom ( bikes_in_terminal )
-                THEN bikes_in_terminal ( bb ) := tt || rr := true
-            ELSE rr := false
+                THEN bikes_in_terminal ( bb ) := tt || rr := TRUE
+            ELSE rr := FALSE
         END
     END;
 
@@ -32,8 +32,8 @@ OPERATIONS
         PRE bb : BIKE
         THEN
             IF bb : dom ( bikes_in_terminal )
-                THEN bikes_in_terminal := { bb } <<| bikes_in_terminal || rr := true
-            ELSE rr := false
+                THEN bikes_in_terminal := { bb } <<| bikes_in_terminal || rr := TRUE
+            ELSE rr := FALSE
         END
     END
 

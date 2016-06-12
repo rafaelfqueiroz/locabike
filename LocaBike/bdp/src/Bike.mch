@@ -2,7 +2,7 @@
     Bike
 
 SEES
-    Boolean , Context , Type
+    Context , Type
 
 ABSTRACT_VARIABLES
     bikes
@@ -19,8 +19,8 @@ OPERATIONS
         PRE bb : BIKE & bb : dom ( types )
         THEN
             IF bb /: bikes
-                THEN bikes := bikes \/ { bb } || rr := true
-            ELSE rr := false
+                THEN bikes := bikes \/ { bb } || rr := TRUE
+            ELSE rr := FALSE
         END
     END ;
 
@@ -28,8 +28,8 @@ OPERATIONS
         PRE bb : BIKE
         THEN
             IF bb : bikes
-                THEN bikes := bikes - { bb } || rr := true
-            ELSE rr := false
+                THEN bikes := bikes - { bb } || rr := TRUE
+            ELSE rr := FALSE
         END
     END ;
 
@@ -37,8 +37,8 @@ OPERATIONS
         PRE bb : BIKE
             THEN
             IF bb : bikes
-                THEN qq := true
-            ELSE qq := false
+                THEN qq := TRUE
+            ELSE qq := FALSE
         END
     END
 

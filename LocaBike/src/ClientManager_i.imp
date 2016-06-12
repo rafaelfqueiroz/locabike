@@ -2,12 +2,12 @@ IMPLEMENTATION ClientManager_i
 REFINES ClientManager
 
 SEES
-    Boolean, Context
+    Context
 
-CONCRETE_VARIABLES  
+CONCRETE_VARIABLES
     clients_i = CLIENT
 
-INVARIANT 
+INVARIANT
     clients_i : CLIENT --> BOOL &
     clients = CLIENT /\ ( cliente_i ~ ) [ { TRUE } ]
 
@@ -19,10 +19,10 @@ OPERATIONS
         BEGIN
         VAR client := clients_i ( cc );
         IF client = FALSE
-        THEN 
+        THEN
             client := TRUE;
             rr := TRUE
-        ELSE 
+        ELSE
             rr := FALSE
     END;
 

@@ -2,7 +2,7 @@
     Type
 
 SEES
-    Boolean , Context , Price
+    Context , Price
 
 ABSTRACT_VARIABLES
     types

@@ -1,5 +1,5 @@
 /* Central_i
- * Author: 
+ * Author:
  * Creation date: 6/8/16
  */
 
@@ -7,12 +7,12 @@ IMPLEMENTATION Central_i
 REFINES Central
 
 SEES
-    Boolean, Context
+    Context
 
-CONCRETE_VARIABLES  
+CONCRETE_VARIABLES
     terminals_i = TERMINAL
 
-INVARIANT 
+INVARIANT
     terminals_i : TERMINAL --> BOOL &
     terminals = TERMINAL /\ ( terminals_i ~ ) [ { TRUE } ]
 
@@ -24,10 +24,10 @@ OPERATIONS
         BEGIN
         VAR terminal := terminals_i ( bb );
         IF terminal = FALSE
-        THEN 
+        THEN
             terminal := TRUE;
             rr := TRUE
-        ELSE 
+        ELSE
             rr := FALSE
     END;
 

@@ -1,0 +1,41 @@
+IMPLEMENTATION
+    Type_i
+
+REFINES
+    Type
+
+SEES
+    Context, Price
+
+CONCRETE_VARIABLES
+    type_i
+
+INVARIANT
+    type_i : BIKE --> s &
+    types = type_i |>> { 0 }
+
+INITIALISATION
+    type_i := BIKE * { 0 } ;
+
+OPERATIONS
+
+    set_type ( bb , tt ) =
+        BEGIN
+            type_i ( bb ) := tt
+        END;
+
+    qq , rr <-- query_type ( bb ) =
+        BEGIN
+            VAR type IN
+                type := type_i ( bb ) ;
+            IF type /= 0
+            THEN
+                qq := type_i ( bb ) ;
+                rr := TRUE
+            ELSE
+                qq := type_i ( bb ) ;
+                rr := FALSE
+            END
+        END
+    END;
+END

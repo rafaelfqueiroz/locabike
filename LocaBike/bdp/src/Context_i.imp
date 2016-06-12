@@ -1,0 +1,23 @@
+﻿IMPLEMENTATION
+        Context_i
+REFINES
+        Context
+VALUES
+    TYPE = 0 .. 4 ;
+        DAY = 0 .. 31 ;
+    MONTH = 0 .. 12 ;
+    YEAR = 1900 .. 2100 ;
+
+    MAX_NUMBER_OF_BIKES = 256 ;
+    MAX_NUMBER_OF_CLIENTS = 1024 ;
+    MAX_NUMBER_OF_TERMINALS = 4 ;
+
+    BIKE = 0 .. MAX_NUMBER_OF_BIKES ;
+    CLIENT = 0 .. MAX_NUMBER_OF_CLIENTS ;
+    TERMINAL = 0 .. MAX_NUMBER_OF_TERMINALS ;
+
+    DEFAULT_TYPE = 0 ;
+    DEFAULT_DAY = 0 ;
+    DEFAULT_MONTH = 0 ;
+    DEFAULT_YEAR = 1900
+END

@@ -15,7 +15,7 @@ OPERATIONS
         THEN
             IF bb : bikes & bb : dom ( bikes_in_terminal )
                 THEN rr <-- rent ( cc, bb )
-            ELSE rr := false
+            ELSE rr := FALSE
             END
     END
 
