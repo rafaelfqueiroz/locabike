@@ -6,7 +6,7 @@
 IMPLEMENTATION Terminal_i
 REFINES Terminal
 
-IMOPORTS
+IMPORTS
 	Bike, Central
 
 SEES
