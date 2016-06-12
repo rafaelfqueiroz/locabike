@@ -1,0 +1,43 @@
+/* Terminal_i
+ * Author: 
+ * Creation date: 6/8/16
+ */
+
+IMPLEMENTATION Terminal_i
+REFINES Terminal
+
+IMOPORTS
+	Bike, Central
+
+SEES
+    Boolean, Context, Type
+
+CONCRETE_VARIABLES  
+    bikes_in_terminal = BIKE
+
+INVARIANT 
+    bikes_in_terminal_i : bikes >-> terminals
+    bikes_in_terminal_i = bikes_in_terminal
+
+INITIALIZATION
+    bikes_in_terminal_i = BIKE * { 0 }
+
+OPERATIONS
+    rr <-- add_bike_to_terminal ( tt, bb ) =
+        THEN
+            IF bikes_i(bb) = TRUE & bb /: dom ( bikes_in_terminal )
+                THEN bikes_in_terminal ( bb ) := tt || rr := true
+            ELSE rr := false
+        END
+    END;
+
+    rr <-- remove_bike_from_terminal ( bb ) =
+        PRE bb : BIKE
+        THEN
+            IF bb : dom ( bikes_in_terminal )
+                THEN bikes_in_terminal := { bb } <<| bikes_in_terminal || rr := true
+            ELSE rr := false
+        END
+    END
+
+ END

@@ -1,0 +1,52 @@
+/* Central_i
+ * Author: 
+ * Creation date: 6/8/16
+ */
+
+IMPLEMENTATION Central_i
+REFINES Central
+
+SEES
+    Boolean, Context
+
+CONCRETE_VARIABLES  
+    terminals_i = TERMINAL
+
+INVARIANT 
+    terminals_i : TERMINAL --> BOOL &
+    terminals = TERMINAL /\ ( terminals_i ~ ) [ { TRUE } ]
+
+INITIALIZATION
+    terminals_i := TERMINAL * { FALSE } ;
+
+OPERATIONS
+    rr <-- add_terminal ( bb ) =
+        BEGIN
+        VAR terminal := terminals_i ( bb );
+        IF terminal = FALSE
+        THEN 
+            terminal := TRUE;
+            rr := TRUE
+        ELSE 
+            rr := FALSE
+    END;
+
+
+    rr <-- remove_terminal ( bb ) =
+        BEGIN
+        VAR terminal IN terminal := terminals_i ( bb);
+            IF terminal := TRUE
+            THEN
+                terminal := FALSE;
+                rr := TRUE
+            ELSE rr := FALSE
+    END;
+
+
+    qq <-- query_terminal ( bb ) =
+        BEGIN
+            qq := terminals_i ( bb )
+        END
+    END
+
+ END
