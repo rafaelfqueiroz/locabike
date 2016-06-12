@@ -3,16 +3,13 @@ MACHINE
     Terminal
 
 SEES
-    Context, Type
-
-USES
-    Bike, Central
+    Context, Bike, Central
 
 VARIABLES
     bikes_in_terminal
 
 INVARIANT
-    bikes_in_terminal : bikes >-> terminals
+    bikes_in_terminal : BIKE >-> TERMINAL
 
 INITIALISATION
     bikes_in_terminal := {}

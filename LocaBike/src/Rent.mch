@@ -1,17 +1,20 @@
 MACHINE
     Rent
 
-USES
-    Type, Bike, ClientManager
-
 INCLUDES
-    Context, Time
+    ClientManager, Bike
 
-VARIABLES
+PROMOTES
+    add_client, query_client, add_bike, query_bike
+
+SEES
+    Context, Type, Time, Price
+
+ABSTRACT_VARIABLES
     rents, return_date
 
 INVARIANT
-    rents : clients >+> bikes & return_date : ran(rents) --> 1..100
+    rents : clients >+> bikes & return_date : ran ( rents ) --> 1 .. 100
 
 INITIALISATION
     rents, return_date := {}, {}

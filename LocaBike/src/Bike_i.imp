@@ -1,35 +1,37 @@
-IMPLEMENTATION Bike_i
-REFINES Bike
+IMPLEMENTATION
+    Bike_i
+
+REFINES
+    Bike
 
 SEES
     Context, Type
 
 CONCRETE_VARIABLES
-    bikes_i, type_i
+    bikes_i
 
 INVARIANT
     bikes_i : BIKE --> BOOL &
     bikes = BIKE /\ ( bikes_i ~ ) [ { TRUE } ]
 
 INITIALISATION
-    bikes_i := BIKE * { FALSE } ;
+    bikes_i := BIKE * { FALSE }
 
 OPERATIONS
 
     rr <-- add_bike ( bb ) =
         BEGIN
-            VAR bike, type IN
+            VAR bike IN
                 bike := bikes_i ( bb );
-                type := type_i ( bb );
-            IF bike = FALSE & type /= 0
-            THEN
-                bikes_i ( bb ) := TRUE;
-                rr := TRUE
-            ELSE
-                rr := FALSE
+                IF bike = FALSE
+                THEN
+                    bikes_i ( bb ) := TRUE;
+                    rr := TRUE
+                ELSE
+                    rr := FALSE
+                END
             END
-        END
-    END;
+        END;
 
 
     rr <-- remove_bike ( bb ) =
