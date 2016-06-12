@@ -4,72 +4,97 @@ IMPLEMENTATION
 REFINES
     Rent
 
-VARIABLES
-    rents, return_date
+SEES
+    Context, Type, Time, Price
+
+IMPORTS
+    ClientManager, Bike
+
+CONCRETE_VARIABLES
+    rents_i, return_date_i
+
+PROMOTES
+    add_client, query_client, add_bike, query_bike
+
+INVARIANT
+    rents_i : CLIENT >+> BIKE & 
+    rents_i = rents & 
+    return_date_i : rents_i ~ --> 1 .. 100
+
 
 INITIALISATION
-    rents, return_date := {}, {}
+    rents_i := CLIENT * { 0 };
+    return_date_i := ( rents_i ~ ) * { 1 }
 
 OPERATIONS
 
     rr <-- rent (cc, bb) =
-        PRE bb : BIKE & cc : CLIENT
-        THEN
-            IF bb:bikes & cc:clients & cc /: dom(rents) & bb /: ran(rents)
-                THEN rents(cc) := bb || rr := TRUE
-            ELSE rr := FALSE
-            END
-    END;
-
-
-    rr <-- return ( cc ) =
-        PRE cc:CLIENT
-        THEN
-            IF cc : dom(rents)
-                THEN
-                    IF return_date(rents(cc)) < time
-                    THEN
-                        rents := {cc} <<| rents ||
-                        return_date := {rents(cc)} <<| return_date ||
-                        rr:=TRUE
-                    ELSE
-                        rents := {cc} <<| rents ||
-                        return_date:= {rents(cc)} <<| return_date||
-                        rr:=TRUE
-                    END
+        BEGIN
+            VAR bike IN
+                bike := rents_i ( cc );
+            IF bike = 0
+            THEN
+                rents_i ( cc ) := bb;
+                rr := TRUE
             ELSE
-                rr:=FALSE
+                rr := FALSE
             END
-    END;
-
-
-    qq <-- query_rents(cc, bb)=
-        PRE cc:CLIENT & bb:BIKE
-        THEN
-            IF cc : dom(rents) & bb : ran(rents) & rents(cc) = bb
-            THEN qq := TRUE
-            ELSE qq := FALSE
         END
     END;
 
 
+    rr <-- return ( cc ) =
+        BEGIN
+            VAR bike IN
+                bike := rents_i ( cc );
+            IF bike /= 0
+            THEN
+                IF return_date_i ( bike ) < time
+                THEN
+                    bike := 0;
+                    return_date_i( bike ) := 1;
+                    rr := TRUE
+                ELSE
+                    rents_i := { cc } <<| rents_i;
+                    return_date_i( bike ) := 1;
+                    rr := TRUE
+                END
+            ELSE
+                rr := FALSE
+            END
+        END
+    END;
+
+    qq <-- query_rents(cc, bb) =
+        BEGIN
+            qq := TRUE
+        END;
+
+
     qq <-- query_rented(bb)=
-        PRE bb:BIKE
-        THEN
-            IF bb : ran(rents)
-            THEN qq := TRUE
-            ELSE qq := FALSE
+        BEGIN
+            VAR rented IN 
+                rented := rents_i ~ ( bb );
+            IF rented /= 0
+            THEN
+                qq := TRUE
+            ELSE
+                qq := FALSE
+            END
         END
     END;
 
 
     qq <-- query_renter(cc)=
-        PRE cc:CLIENT
-        THEN
-            IF cc : dom(rents)
-            THEN qq := TRUE
-            ELSE qq := FALSE
+        BEGIN
+            VAR renter IN 
+                renter := rents_i ~ ( cc );
+            IF renter /= 0
+            THEN
+                qq := TRUE
+            ELSE
+                qq := FALSE
+            END
         END
     END
-
- END
+END
