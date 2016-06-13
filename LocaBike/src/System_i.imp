@@ -5,7 +5,7 @@ REFINES
     System
 
 SEES
-    Context, Type
+    Context, Price
 
 IMPORTS
      Rent, Central, Terminal, Time
@@ -17,24 +17,26 @@ CONCRETE_VARIABLES
     rents_i
 
 INVARIANT
-    rents_i : BIKE --> 0 .. 11 &
-    rents = rents_i |>> { 11 }
+    rents_i : BIKE --> 0..256 &
+    rents = rents_i
 
 INITIALISATION
-    rents_i := BIKE * { 11 }
+    rents_i := BIKE * { 0 }
 
 OPERATIONS
 
-    rr <-- rent_from_any_terminal ( cc, bb ) =
+    rr, rt <-- rent_from_any_terminal ( cc, bb ) =
         BEGIN
             VAR rented_bike IN
                 rented_bike := rents_i ( cc );
             IF rented_bike = 0
                 THEN
                    rents_i ( cc ) := bb;
-                   rr <--  remove_bike_from_terminal ( bb )
+                   rr <-- rent ( cc, bb );
+                   rt <-- remove_bike_from_terminal ( bb )
                 ELSE
-                   rr := FALSE
+                   rr := FALSE;
+                   rt := FALSE
                 END
             END
         END;

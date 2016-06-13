@@ -8,7 +8,7 @@ PROMOTES
     add_client, query_client, add_bike, query_bike
 
 SEES
-    Context, Type, Price
+    Context, Type
 
 ABSTRACT_VARIABLES
     rents, return_date

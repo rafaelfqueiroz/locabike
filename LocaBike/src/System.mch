@@ -3,7 +3,7 @@ MACHINE
     System
 
 SEES
-    Context, Type
+    Context, Price
 
 INCLUDES
      Rent, Central, Terminal, Time
@@ -13,12 +13,16 @@ PROMOTES
 
 OPERATIONS
 
-    rr <-- rent_from_any_terminal ( cc, bb ) =
+    rr, rt <-- rent_from_any_terminal ( cc, bb ) =
         PRE cc : CLIENT & bb : BIKE
         THEN
             IF bb : bikes & bb : dom ( bikes_in_terminal )
-                THEN rr <-- rent ( cc, bb )
-            ELSE rr := FALSE
+            THEN
+                rr <-- rent ( cc, bb ) ||
+                rt <-- remove_bike_from_terminal ( bb )
+            ELSE
+                rr := FALSE ||
+                rt := FALSE
             END
         END;
 

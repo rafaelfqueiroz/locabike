@@ -5,7 +5,7 @@ REFINES
     Terminal
 
 SEES
-    Context, Type, Central
+    Context, Central
 
 CONCRETE_VARIABLES
     bikes_in_terminal_i

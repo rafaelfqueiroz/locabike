@@ -5,7 +5,7 @@ REFINES
     Rent
 
 SEES
-    Context, Type, Price
+    Context, Type
 
 IMPORTS
     ClientManager, Bike, Time
