@@ -3,10 +3,10 @@ MACHINE
     System
 
 SEES 
-    Type
+    Context, Type
     
 INCLUDES
-     Bike, ClientManager, Rent, Central, Terminal
+     Rent, Central, Terminal
 
 PROMOTES
     add_bike, add_client, add_terminal, add_bike_to_terminal, remove_bike_from_terminal

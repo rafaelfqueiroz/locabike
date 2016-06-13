@@ -5,26 +5,27 @@ REFINES
     Rent
 
 SEES
-    Context, Type, Time, Price
+    Context, Type, Price
 
 IMPORTS
-    ClientManager, Bike
+    ClientManager, Bike, Time
 
 CONCRETE_VARIABLES
-    rents_i, return_date_i
+    rents_i, return_date_i, times_i
 
 PROMOTES
     add_client, query_client, add_bike, query_bike
 
 INVARIANT
-    rents_i : CLIENT >+> BIKE & 
-    rents_i = rents & 
+    rents_i : CLIENT >+> BIKE &
+    times_i = time &
+    rents_i = rents &
     return_date_i : BIKE --> 0 .. 100
-
 
 INITIALISATION
     rents_i := CLIENT * { 0 };
-    return_date_i := BIKE * { 0 }
+    return_date_i := BIKE * { 0 };
+    times_i := 0
 
 OPERATIONS
 
@@ -49,7 +50,7 @@ OPERATIONS
                 bike := rents_i ( cc );
             IF bike /= 0
             THEN
-                IF return_date_i ( bike ) < time
+                IF return_date_i ( bike ) < times_i
                 THEN
                     bike := 0;
                     return_date_i( bike ) := 1;
@@ -73,7 +74,7 @@ OPERATIONS
 
     qq <-- query_rented(bb)=
         BEGIN
-            VAR rented IN 
+            VAR rented IN
                 rented := rents_i ~ ( bb );
             IF rented /= 0
             THEN
@@ -87,7 +88,7 @@ OPERATIONS
 
     qq <-- query_renter(cc)=
         BEGIN
-            VAR renter IN 
+            VAR renter IN
                 renter := rents_i ~ ( cc );
             IF renter /= 0
             THEN

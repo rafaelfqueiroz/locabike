@@ -3,7 +3,7 @@ MACHINE
     Terminal
 
 SEES
-    Context, Bike, Central
+    Context, Central
 
 VARIABLES
     bikes_in_terminal
@@ -19,7 +19,7 @@ OPERATIONS
     rr <-- add_bike_to_terminal ( tt, bb ) =
         PRE tt : TERMINAL & bb : BIKE
         THEN
-            IF bb : bikes & bb /: dom ( bikes_in_terminal )
+            IF bb /: dom ( bikes_in_terminal )
                 THEN bikes_in_terminal ( bb ) := tt || rr := TRUE
             ELSE rr := FALSE
         END

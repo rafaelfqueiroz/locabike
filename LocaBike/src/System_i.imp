@@ -1,19 +1,42 @@
-/* System_i
- * Author: 
- * Creation date: 6/12/16
- */
+IMPLEMENTATION
+    System_i
 
-IMPLEMENTATION System_i
-REFINES System
+REFINES
+    System
+
+SEES
+    Context, Type
+
+IMPORTS
+     Rent, Central, Terminal
+
+PROMOTES
+    add_bike, add_client, add_terminal, add_bike_to_terminal, remove_bike_from_terminal
+
+CONCRETE_VARIABLES
+    rents_i
+
+INVARIANT
+    rents_i : BIKE --> 0 .. 11 &
+    rents = rents_i |>> { 11 }
+
+INITIALISATION
+    rents_i := BIKE * { 11 } 
 
 OPERATIONS
+
     rr <-- rent_from_any_terminal ( cc, bb ) =
-        PRE cc : CLIENT & bb : BIKE
-        THEN
-            IF bb : bikes & bb : dom ( bikes_in_terminal )
-                THEN rr <-- rent ( cc, bb )
-            ELSE rr := FALSE
+        BEGIN
+            VAR rented_bike IN
+                rented_bike := rents_i ( cc );
+            IF rented_bike = 0
+           THEN
+               rents_i ( cc ) := bb;
+               rr := TRUE
+           ELSE
+               rr := FALSE
             END
+        END
     END
 
  END

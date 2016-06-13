@@ -2,13 +2,13 @@ MACHINE
     Rent
 
 INCLUDES
-    ClientManager, Bike
+    ClientManager, Bike, Time
 
 PROMOTES
     add_client, query_client, add_bike, query_bike
 
 SEES
-    Context, Type, Time, Price
+    Context, Type, Price
 
 ABSTRACT_VARIABLES
     rents, return_date
