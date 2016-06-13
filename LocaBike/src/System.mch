@@ -6,10 +6,10 @@ SEES
     Context, Type
 
 INCLUDES
-     Rent, Central, Terminal
+     Rent, Central, Terminal, Time
 
 PROMOTES
-    add_bike, add_client, add_terminal, add_bike_to_terminal, remove_bike_from_terminal
+    add_bike, add_client, add_terminal, add_bike_to_terminal, remove_bike_from_terminal, pass_time, pass_hour, query_time
 
 OPERATIONS
 

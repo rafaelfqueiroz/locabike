@@ -2,7 +2,7 @@ MACHINE
     Rent
 
 INCLUDES
-    ClientManager, Bike, Time
+    ClientManager, Bike
 
 PROMOTES
     add_client, query_client, add_bike, query_bike

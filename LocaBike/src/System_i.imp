@@ -8,10 +8,10 @@ SEES
     Context, Type
 
 IMPORTS
-     Rent, Central, Terminal
+     Rent, Central, Terminal, Time
 
 PROMOTES
-    add_bike, add_client, add_terminal, add_bike_to_terminal, remove_bike_from_terminal
+    add_bike, add_client, add_terminal, add_bike_to_terminal, remove_bike_from_terminal, pass_time, pass_hour, query_time
 
 CONCRETE_VARIABLES
     rents_i
@@ -32,7 +32,7 @@ OPERATIONS
             IF rented_bike = 0
                 THEN
                    rents_i ( cc ) := bb;
-                   rr := TRUE
+                   rr <--  remove_bike_from_terminal ( bb )
                 ELSE
                    rr := FALSE
                 END
