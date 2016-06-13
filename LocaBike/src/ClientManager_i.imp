@@ -15,7 +15,21 @@ INVARIANT
     clients = CLIENT /\ ( clients_i ~ ) [ { TRUE } ]
 
 INITIALISATION
-    clients_i := CLIENT * { FALSE }
+    BEGIN
+        /*
+        clients_i := CLIENT * { FALSE }
+        */
+
+        VAR ii IN
+            ii := 0;
+            WHILE (ii <= MAX_NUMBER_OF_CLIENTS) DO
+                clients_i(ii) := FALSE;
+                ii := ii + 1
+                INVARIANT !nn . (nn:0..(ii-1) => (clients_i(ii) = FALSE))
+                VARIANT (MAX_NUMBER_OF_CLIENTS - ii)
+            END
+        END
+    END
 
 OPERATIONS
 

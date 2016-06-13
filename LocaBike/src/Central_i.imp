@@ -15,7 +15,21 @@ INVARIANT
     terminals = TERMINAL /\ ( terminals_i ~ ) [ { TRUE } ]
 
 INITIALISATION
-    terminals_i := TERMINAL * { FALSE }
+    BEGIN
+        /*
+        terminals_i := TERMINAL * { FALSE }
+        */
+
+        VAR ii IN
+            ii := 0;
+            WHILE (ii <= MAX_NUMBER_OF_TERMINALS) DO
+                terminals_i(ii) := FALSE;
+                ii := ii + 1
+                INVARIANT !nn . (nn:0..(ii-1) => (terminals_i(ii) = FALSE))
+                VARIANT (MAX_NUMBER_OF_TERMINALS - ii)
+            END
+        END
+    END
 
 OPERATIONS
 

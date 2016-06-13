@@ -17,11 +17,25 @@ CONCRETE_VARIABLES
     rents_i
 
 INVARIANT
-    rents_i : BIKE --> 0..256 &
+    rents_i : CLIENT --> 0..MAX_NUMBER_OF_BIKES &
     rents = rents_i
 
 INITIALISATION
-    rents_i := BIKE * { 0 }
+    BEGIN
+        /*
+        rents_i := CLIENTS * { 0 }
+        */
+
+        VAR ii IN
+            ii := 0;
+            WHILE (ii <= MAX_NUMBER_OF_CLIENTS) DO
+                rents_i(ii) := 0;
+                ii := ii + 1
+                INVARIANT !nn . (nn:0..(ii-1) => (rents_i(ii) = 0))
+                VARIANT (MAX_NUMBER_OF_CLIENTS - ii)
+            END
+        END
+    END
 
 OPERATIONS
 

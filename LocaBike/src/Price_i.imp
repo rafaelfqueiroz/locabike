@@ -15,8 +15,23 @@ INVARIANT
     hour_price = hour_price_i
 
 INITIALISATION
-    price_i := TYPE * { 1 } ;
-    hour_price_i := TYPE * { 1 }
+    BEGIN
+        /*
+        price_i := TYPE * { 1 } ;
+        hour_price_i := TYPE * { 1 }
+        */
+
+        VAR ii IN
+            ii := 0;
+            WHILE (ii <= 999) DO
+                price_i(ii) := 1;
+                hour_price_i(ii) := 1;
+                ii := ii + 1
+                INVARIANT !nn . (nn:0..(ii-1) => (price_i(ii) = 1 & hour_price_i(ii) = 1))
+                VARIANT (999 - ii)
+            END
+        END
+    END
 
 OPERATIONS
 

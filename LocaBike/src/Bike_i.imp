@@ -15,7 +15,21 @@ INVARIANT
     bikes = BIKE /\ ( bikes_i ~ ) [ { TRUE } ]
 
 INITIALISATION
-    bikes_i := BIKE * { FALSE }
+    BEGIN
+        /*
+        bikes_i := BIKE * { FALSE }
+        */
+
+        VAR ii IN
+            ii := 0;
+            WHILE (ii <= MAX_NUMBER_OF_BIKES) DO
+                bikes_i(ii) := FALSE;
+                ii := ii + 1
+                INVARIANT !nn . (nn:0..(ii-1) => (bikes_i(ii) = FALSE))
+                VARIANT (MAX_NUMBER_OF_BIKES - ii)
+            END
+        END
+    END
 
 OPERATIONS
 
