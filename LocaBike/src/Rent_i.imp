@@ -8,26 +8,21 @@ SEES
     Context, Type
 
 IMPORTS
-    ClientManager, Bike, Time
+    ClientManager, Bike
 
 CONCRETE_VARIABLES
-    rents_i, return_date_i, time_i
+    rents_i, return_date_i
 
 PROMOTES
     add_client, query_client, add_bike, query_bike
 
 INVARIANT
-    time_i : NAT &
-    time = time_i &
-
     rents_i : CLIENT >-> BIKE &
     rents_i = rents &
 
     return_date_i : BIKE --> 0 .. 100
 
 INITIALISATION
-    time_i := 0;
-
     BEGIN
         /*
         rents_i := CLIENT * { 0 };
@@ -79,7 +74,6 @@ OPERATIONS
             IF bike > 0
             THEN
                 rents_i ( cc ) := 0;
-                return_date_i ( bike ) := time_i;
                 rr := TRUE
             ELSE
                 rr := FALSE
