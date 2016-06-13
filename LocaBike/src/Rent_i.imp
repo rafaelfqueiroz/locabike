@@ -19,12 +19,12 @@ PROMOTES
 INVARIANT
     rents_i : CLIENT >+> BIKE & 
     rents_i = rents & 
-    return_date_i : rents_i ~ --> 1 .. 100
+    return_date_i : BIKE --> 0 .. 100
 
 
 INITIALISATION
     rents_i := CLIENT * { 0 };
-    return_date_i := ( rents_i ~ ) * { 1 }
+    return_date_i := BIKE * { 0 }
 
 OPERATIONS
 
