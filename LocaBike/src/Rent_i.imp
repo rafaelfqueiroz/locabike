@@ -11,21 +11,24 @@ IMPORTS
     ClientManager, Bike, Time
 
 CONCRETE_VARIABLES
-    rents_i, return_date_i, times_i
+    rents_i, return_date_i, time_i
 
 PROMOTES
     add_client, query_client, add_bike, query_bike
 
 INVARIANT
-    rents_i : CLIENT >+> BIKE &
-    times_i = time &
+    time_i : NAT &
+    time = time_i &
+    
+    rents_i : CLIENT >-> BIKE &
     rents_i = rents &
+
     return_date_i : BIKE --> 0 .. 100
 
 INITIALISATION
     rents_i := CLIENT * { 0 };
     return_date_i := BIKE * { 0 };
-    times_i := 0
+    time_i := 0
 
 OPERATIONS
 
@@ -48,18 +51,11 @@ OPERATIONS
         BEGIN
             VAR bike IN
                 bike := rents_i ( cc );
-            IF bike /= 0
+            IF bike > 0
             THEN
-                IF return_date_i ( bike ) < times_i
-                THEN
-                    bike := 0;
-                    return_date_i( bike ) := 1;
-                    rr := TRUE
-                ELSE
-                    rents_i := { cc } <<| rents_i;
-                    return_date_i( bike ) := 1;
-                    rr := TRUE
-                END
+                rents_i ( cc ) := 0;
+                return_date_i ( bike ) := time_i;
+                rr := TRUE
             ELSE
                 rr := FALSE
             END
@@ -75,7 +71,7 @@ OPERATIONS
     qq <-- query_rented(bb)=
         BEGIN
             VAR rented IN
-                rented := rents_i ~ ( bb );
+                rented := rents_i (  bb );
             IF rented /= 0
             THEN
                 qq := TRUE
@@ -89,7 +85,7 @@ OPERATIONS
     qq <-- query_renter(cc)=
         BEGIN
             VAR renter IN
-                renter := rents_i ~ ( cc );
+                renter := rents_i ( cc );
             IF renter /= 0
             THEN
                 qq := TRUE

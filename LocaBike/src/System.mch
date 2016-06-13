@@ -2,9 +2,9 @@
 MACHINE
     System
 
-SEES 
+SEES
     Context, Type
-    
+
 INCLUDES
      Rent, Central, Terminal
 
@@ -20,6 +20,19 @@ OPERATIONS
                 THEN rr <-- rent ( cc, bb )
             ELSE rr := FALSE
             END
-    END
+        END;
+
+    rr, rt <-- return_to_terminal ( cc, bb, tt ) =
+        PRE cc : CLIENT & bb : BIKE & tt : TERMINAL
+        THEN
+            IF cc : dom ( rents )
+            THEN
+                rr <-- return ( cc ) ||
+                rt <-- add_bike_to_terminal ( tt, bb )
+            ELSE
+                rr := FALSE ||
+                rt := FALSE
+            END
+        END
 
 END

@@ -21,7 +21,7 @@ INVARIANT
     rents = rents_i |>> { 11 }
 
 INITIALISATION
-    rents_i := BIKE * { 11 } 
+    rents_i := BIKE * { 11 }
 
 OPERATIONS
 
@@ -30,13 +30,29 @@ OPERATIONS
             VAR rented_bike IN
                 rented_bike := rents_i ( cc );
             IF rented_bike = 0
-           THEN
-               rents_i ( cc ) := bb;
-               rr := TRUE
-           ELSE
-               rr := FALSE
+                THEN
+                   rents_i ( cc ) := bb;
+                   rr := TRUE
+                ELSE
+                   rr := FALSE
+                END
+            END
+        END;
+
+    rr, rt <-- return_to_terminal ( cc, bb, tt ) =
+        BEGIN
+            VAR rented_bike IN
+                rented_bike := rents_i ( cc );
+            IF rented_bike > 0
+                THEN
+                    rents_i ( cc ) := 0;
+                    rr <-- return ( cc );
+                    rt <-- add_bike_to_terminal ( tt, bb )
+                ELSE
+                    rr := FALSE;
+                    rt := FALSE
+                END
             END
         END
-    END
 
  END

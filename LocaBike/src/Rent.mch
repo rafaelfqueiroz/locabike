@@ -34,17 +34,11 @@ OPERATIONS
         PRE cc:CLIENT
         THEN
             IF cc : dom(rents)
-                THEN
-                    IF return_date(rents(cc)) < time
-                    THEN
-                        rents := {cc} <<| rents ||
-                        return_date := {rents(cc)} <<| return_date ||
-                        rr:=TRUE
-                    ELSE
-                        rents := {cc} <<| rents ||
-                        return_date:= {rents(cc)} <<| return_date||
-                        rr:=TRUE
-                    END
+            THEN
+                rents := {cc} <<| rents ||
+                return_date := {rents(cc)} <<| return_date ||
+                rr:=TRUE
+
             ELSE
                 rr:=FALSE
             END
